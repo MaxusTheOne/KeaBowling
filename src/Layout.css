@@ -9,7 +9,7 @@
 
 main {
   position: absolute;
-  height: calc(90vh - 3em);
+  height: calc(90vh - 75px);
   width: calc(100vw - 275px);
   text-align: left;
   top: 6em;

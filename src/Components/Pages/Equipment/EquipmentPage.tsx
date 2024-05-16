@@ -1,3 +1,10 @@
+import FullTable from "../../Table/FullTable";
+
 export default function EquipmentPage() {
-  return <h1>Equipment Page</h1>;
+  return (
+    <div id="equipment-page-container">
+      <h1>Equipment Page</h1>
+      <FullTable></FullTable>
+    </div>
+  );
 }
