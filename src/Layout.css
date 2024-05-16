@@ -1,0 +1,30 @@
+.app-layout {
+  padding: 0;
+  width: 100vw;
+}
+
+#header {
+  width: 800px;
+}
+
+main {
+  position: absolute;
+  height: calc(90vh - 3em);
+  width: calc(100vw - 275px);
+  text-align: left;
+  top: 6em;
+  z-index: 0;
+  margin-left: calc(100px);
+  background-color: #131936e7;
+  border-radius: 10px;
+  overflow: scroll;
+  padding: 20px 70px;
+}
+
+.hidden-background {
+  background: none;
+}
+
+main h1 {
+  margin-left: 20px;
+}
