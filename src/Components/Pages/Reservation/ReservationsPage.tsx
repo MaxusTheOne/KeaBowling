@@ -1,3 +1,11 @@
+import FullTable from "../../Table/FullTable";
+import "./ReservationsPage.css";
+
 export default function ReservationsPage() {
-  return <h1>All Reservations</h1>;
+  return (
+    <div id="reservations-page-container">
+      <h1>Reservations Page</h1>
+      <FullTable />
+    </div>
+  );
 }

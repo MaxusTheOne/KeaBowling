@@ -2,6 +2,7 @@ import { useLocation } from "react-router-dom";
 import NavBar from "./Components/NavBar/NavBar";
 import Sidebar from "./Components/Sidebar/Sidebar";
 import "./Layout.css";
+import { useEffect, useState } from "react";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -9,10 +10,21 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const location = useLocation();
+  const BlankBackLocations = ["/login", "/new-account"];
 
-  // Check if the current path is '/login'
-  const isBlankBackPage =
-    location.pathname === "/login" || location.pathname === "/new-account";
+  const useIsBlankBackPage = (BlankBackLocations: string[]) => {
+    const [isBlankBackPage, setIsBlankBackPage] = useState(false);
+    const location = useLocation();
+
+    useEffect(() => {
+      const isBlankBack = BlankBackLocations.includes(location.pathname);
+      setIsBlankBackPage(isBlankBack);
+    }, [BlankBackLocations, location.pathname]);
+
+    return isBlankBackPage;
+  };
+
+  const isBlankBackPage = useIsBlankBackPage(BlankBackLocations);
 
   return (
     <div className="app-layout">
