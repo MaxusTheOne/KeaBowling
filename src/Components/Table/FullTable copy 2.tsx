@@ -6,7 +6,6 @@ export type SchemaItem = {
   header: string;
   accessorKey: string;
   type: "string" | "number" | "date";
-  backgroundColor?: string;
 };
 
 export interface Props<T> {
@@ -50,15 +49,18 @@ const FullTable = <T extends object>({ data, schema, onClick }: Props<T>) => {
       <table id="admin-users-table">
         <thead>
           <tr>
-            {schema.map((item) => (
-              <th
-                style={{ backgroundColor: item.backgroundColor }}
-                key={item.accessorKey}
-              >
-                {item.header}
-              </th>
-            ))}
-
+            {!!dataItems.length && (
+              <>
+                {Object.keys(dataItems[0]).map((item, index) => (
+                  <th key={index}>
+                    {item
+                      .split("_")
+                      .map((item) => item[0].toUpperCase() + item.slice(1))
+                      .join(" ")}
+                  </th>
+                ))}
+              </>
+            )}
             {/* <th id="users-table-edit-header">Redigér</th>
             <th id="users-table-delete-header">Slet</th> */}
           </tr>
@@ -68,9 +70,9 @@ const FullTable = <T extends object>({ data, schema, onClick }: Props<T>) => {
             <>
               {dataItems.map((item, i) => (
                 <tr key={i}>
-                  {schema.map((schemaItem, index) => (
+                  {Object.values(item).map((miniItem, index) => (
                     <td onClick={() => onClick(item)} key={index}>
-                      {item[schemaItem.accessorKey]}
+                      {String(miniItem)}
                     </td>
                   ))}
                 </tr>

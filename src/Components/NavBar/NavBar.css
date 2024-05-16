@@ -36,14 +36,10 @@
   -webkit-user-drag: none;
 }
 
-.nav-header li:hover {
-  cursor: pointer;
-  color: rgb(0, 140, 255);
-  text-decoration-line: underline;
-}
-
 .nav-header li:hover a {
   color: rgb(0, 140, 255);
+  text-decoration-line: underline;
+  cursor: pointer;
 }
 
 .nav-header li:hover a p {

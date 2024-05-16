@@ -14,10 +14,6 @@ const AppRoutes = [
     Element: MyPage,
   },
   {
-    path: "/make-reservation",
-    Element: MakeReservationPage,
-  },
-  {
     path: "/reservations",
     Element: ReservationsPage,
   },
