@@ -16,7 +16,6 @@ function Sidebar() {
   };
   // Sidebar routes from sidebar data
   const sidebarDataAndRoutes = SidebarData.map((item, key) => {
-    console.log(item + " " + key);
     const correspondingRoute = AppRoutes[key].path;
     return {
       ...item,

@@ -75,20 +75,31 @@ export default function ReservationsPage() {
             header: "Name",
             accessorKey: "name",
             type: "string",
-            backgroundColor: "blue",
+            searchByValue: true,
           },
-          { header: "Email", accessorKey: "email", type: "string" },
-          { header: "Id", accessorKey: "id", type: "number" },
+          {
+            header: "Email",
+            accessorKey: "email",
+            type: "string",
+            searchByValue: true,
+          },
+          {
+            header: "Id",
+            accessorKey: "id",
+            type: "number",
+            searchByValue: true,
+          },
           {
             header: "People Amount",
             accessorKey: "peopleAmount",
             type: "number",
-            backgroundColor: "red",
+            searchByValue: false,
           },
           {
             header: "Fun Number ",
             accessorKey: "funNumber",
             type: "number",
+            searchByValue: false,
           },
         ]}
         onClick={(v) => handleClick(v)}
