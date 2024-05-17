@@ -7,6 +7,7 @@ export type SchemaItem = {
   accessorKey: string;
   type: "string" | "number" | "date";
   backgroundColor?: string;
+  searchByValue: boolean;
 };
 
 export interface Props<T> {
@@ -21,7 +22,28 @@ const FullTable = <T extends object>({ data, schema, onClick }: Props<T>) => {
   // Interfaces
 
   // State
-  const [dataItems, setDataItems] = useState(data);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  // Get accessor keys for fields where searchByValue is true
+  const searchByValues = schema
+    .filter((item) => item.searchByValue)
+    .map((item) => item.accessorKey);
+
+  // Search function
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(event.target.value);
+  };
+
+  // Filter data based on search term
+  const filteredData = data.filter((item) =>
+    searchByValues.some((key) => {
+      const value = item[key as keyof T];
+      return (
+        (typeof value === "string" || typeof value === "number") &&
+        value.toString().toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    })
+  );
 
   return (
     <div id="admin-users-table-container">
@@ -31,7 +53,7 @@ const FullTable = <T extends object>({ data, schema, onClick }: Props<T>) => {
           type="text"
           id="admin-users-search"
           placeholder="Search"
-          // onChange={handleSearchChange}
+          onChange={handleSearchChange}
         />
         <label htmlFor="admin-users-role-filter">Rolle:</label>
         <select
@@ -58,24 +80,23 @@ const FullTable = <T extends object>({ data, schema, onClick }: Props<T>) => {
                 {item.header}
               </th>
             ))}
-
-            {/* <th id="users-table-edit-header">Redigér</th>
-            <th id="users-table-delete-header">Slet</th> */}
           </tr>
         </thead>
         <tbody>
-          {!!dataItems.length && (
-            <>
-              {dataItems.map((item, i) => (
-                <tr key={i}>
-                  {schema.map((schemaItem, index) => (
-                    <td onClick={() => onClick(item)} key={index}>
-                      {item[schemaItem.accessorKey]}
-                    </td>
-                  ))}
-                </tr>
-              ))}
-            </>
+          {filteredData.length > 0 ? (
+            filteredData.map((item, i) => (
+              <tr key={i}>
+                {schema.map((schemaItem, index) => (
+                  <td onClick={() => onClick(item)} key={index}>
+                    {item[schemaItem.accessorKey as keyof T]}
+                  </td>
+                ))}
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan={schema.length}>No data found</td>
+            </tr>
           )}
         </tbody>
       </table>

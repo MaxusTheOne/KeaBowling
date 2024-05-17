@@ -15,24 +15,15 @@ export interface Props<T> {
 }
 
 
+
 // DATA -> FullTable -> Generic Objects array -> 
 
 const FullTable = <T extends object> ({
   data,
-}:Props<T>) => {
+}: Props<T>) => {
   // Interfaces
-  interface APIUser {
-    username: string;
-    email: string;
-    roles: Array<Role>;
-    created: Date | string;
-    edited: Date | string;
-    [key: string]: unknown; // Add index signature with type 'unknown'
-  }
 
-  interface Role {
-    roleName: string;
-  }
+
 
   // State
   const [dataItems, setDataItems] = useState(data);
@@ -215,7 +206,7 @@ const FullTable = <T extends object> ({
       <table id="admin-users-table">
         <thead>
           <tr>
-            {/* <th onClick={() => handleHeaderClick("username")}>
+            <th onClick={() => handleHeaderClick("username")}>
               Brugernavn
               {sortField === "username" &&
                 (sortDirection === "asc" ? " ▲" : " ▼")}
@@ -237,7 +228,7 @@ const FullTable = <T extends object> ({
               Redigeret sidst
               {sortField === "edited" &&
                 (sortDirection === "asc" ? " ▲" : " ▼")}
-            </th> */}
+            </th>
             <th id="users-table-edit-header">Redigér</th>
             <th id="users-table-delete-header">Slet</th>
           </tr>
