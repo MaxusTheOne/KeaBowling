@@ -1,7 +1,7 @@
-import { reservation } from "../../../Types";
+import { Reservation } from "../../../Types";
 
 interface props {
-  data: reservation;
+  data: Reservation;
   index: number;
 
 }

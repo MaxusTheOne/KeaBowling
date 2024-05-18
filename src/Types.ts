@@ -1,4 +1,4 @@
-export interface reservation {
+export interface Reservation {
   bookingInformation?: {
     id: number;
     booking_typeid: number;
@@ -11,10 +11,10 @@ export interface reservation {
     is_child_friendly?: boolean;
     id: number;
   };
-  user?: user;
+  user?: User;
 }
 
-export interface user {
+export interface User {
   id: number;
   date_created: Date;
   date_edited?: Date;
