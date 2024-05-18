@@ -6,7 +6,7 @@ import { getUsers, deleteUser } from "../../Services/apiFacade";
 import { Button } from "@mui/material";
 import FullTableAddDialog from "./FullTableAddDialog";
 import FullTableDialog from "./FullTableDialog";
-import { reservation, user} from "../../Types"
+import { Reservation, User} from "../../Types"
 import ReservationsTableItem from "./TableRenderers/ReservationsTableItem";
 
 // PROPS
@@ -46,7 +46,7 @@ const FullTable = <T extends object> ({
   // Edit dialog
   const [open, setOpen] = useState(false);
   const [addOpen, setAddOpen] = useState(false);
-  const [editingUser, setEditingUser] = useState<user | null>(null);
+  const [editingUser, setEditingUser] = useState<User | null>(null);
 
   // Filtering the users list
   const handleRoleFilterChange = (
@@ -98,7 +98,7 @@ const FullTable = <T extends object> ({
   });
 
   // Handle edit user button
-  const handleEditClick = (object: user) => {
+  const handleEditClick = (object: User) => {
     setEditingUser(object);
     setOpen(true);
   };
@@ -154,7 +154,7 @@ const FullTable = <T extends object> ({
   };
 
   const handleAddUserClick = () => {
-    const _user: user = {
+    const _user: User = {
       id: 0,
       name: "",
       username: "",
@@ -173,7 +173,7 @@ const FullTable = <T extends object> ({
   return (
     {
       dataType = "Reservations" && data.map((reservation, i) => {
-        <ReservationsTable  reservation={reservation as reservation} index={i} handleEditClicked={handleEditClick} handleDeleteClicked={handleDeleteClick}/>
+        <ReservationsTable  reservation={reservation as Reservation} index={i} handleEditClicked={handleEditClick} handleDeleteClicked={handleDeleteClick}/>
       });
     } 
 
