@@ -30,7 +30,7 @@ const CreateAccountPage = () => {
           .signIn(user)
           .then(() => {
             // wait 1 second to ensure that the user is created before navigating.
-            setTimeout(() => (window.location.pathname = "/"), 1000);
+            setTimeout(() => (window.location.pathname = "/my-page"), 1000);
           })
           .catch((err) => {
             setErr(err);
