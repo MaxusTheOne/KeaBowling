@@ -8,6 +8,7 @@ import Login from "../Security/Login";
 import CreateAccountPage from "./Pages/SignIn/CreateAccountPage";
 import RequireAuth from "../Security/RequireAuth";
 import BeveragesPage from "./Pages/Beverages/BeveragesPage";
+import PageNotFound from "./Pages/PageNotFound/PageNotFound";
 
 const AppRoutes = [
   {
@@ -70,6 +71,14 @@ const AppRoutes = [
   {
     path: "/new-account",
     Element: CreateAccountPage,
+  },
+  {
+    path: "/page-not-found",
+    Element: PageNotFound,
+  },
+  {
+    path: "*",
+    Element: PageNotFound,
   },
 ];
 

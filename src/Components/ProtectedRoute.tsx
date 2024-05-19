@@ -17,7 +17,7 @@ const ProtectedRoute = ({
   return isAuthorized ? (
     element
   ) : (
-    <Navigate to="/not-authorized" state={{ from: location }} />
+    <Navigate to="/login" state={{ from: location }} />
   );
 };
 
