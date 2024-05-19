@@ -3,6 +3,7 @@ import "./Sidebar.css";
 import { SidebarData } from "./SidebarData";
 import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "../../Security/AuthProvider";
+import PersonAddIcon from "@mui/icons-material/PersonAdd";
 
 function Sidebar() {
   const auth = useAuth(); // Call useAuth at the top level
@@ -15,6 +16,22 @@ function Sidebar() {
   const toggle = () => {
     setIsOpen((prevIsOpen: unknown) => !prevIsOpen);
   };
+
+  const loginBar = (
+    <li>
+      <Link to="/new-account">
+        <div className="row-icon">
+          <PersonAddIcon />
+        </div>
+        <div
+          className="row-title"
+          style={{ display: isOpen ? "block" : "none" }}
+        >
+          <p>Create Account</p>
+        </div>
+      </Link>
+    </li>
+  );
 
   // Sidebar list and HTML.
   const sidebarList = SidebarData.map((item, key) => {
@@ -59,7 +76,7 @@ function Sidebar() {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={toggle}
     >
-      <ul className="SidebarList">{sidebarList}</ul>
+      <ul className="SidebarList">{!auth.username ? loginBar : sidebarList}</ul>
     </div>
   );
 }
