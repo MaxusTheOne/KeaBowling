@@ -11,7 +11,8 @@
   flex-direction: column;
   width: 100%;
   margin: auto;
-  background-color: #303030;
+  background-color: #3b3b3b;
+  border: 2px solid rgb(78, 78, 78);
 }
 
 .data-table {
@@ -75,7 +76,7 @@
 
 .table-header button:hover {
   cursor: pointer;
-  background-color: rgb(132, 1, 1);
+  background-color: rgb(100, 100, 100);
 }
 
 .table-header button {
@@ -93,24 +94,6 @@
 .pageButton:hover {
   background-color: rgb(209, 0, 10);
   cursor: pointer;
-}
-
-.table-container {
-  text-align: left;
-  overflow: auto;
-  border: none;
-  border-radius: 5px;
-  padding: 10px;
-  margin-left: auto;
-  margin-right: auto;
-  width: fit-content;
-  align-items: center;
-  justify-content: center;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  margin: auto;
-  background-color: #050e32;
 }
 
 .data-table {

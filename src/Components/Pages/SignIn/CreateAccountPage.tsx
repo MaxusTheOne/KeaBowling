@@ -99,11 +99,12 @@ const CreateAccountPage = () => {
         </div>
         <hr />
         <br />
-        {err && <p color="red">{err}</p>}
+
         <button type="submit" className="login-btn">
           Opret Konto
         </button>
         <NavLink to="/login">Har du allerede en konto?</NavLink>
+        {err && <p className="login-error">{err}</p>}
       </form>
     </div>
   );
