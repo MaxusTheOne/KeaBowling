@@ -2,9 +2,10 @@ import { useState } from "react";
 import "./Sidebar.css";
 import { SidebarData } from "./SidebarData";
 import { Link, useLocation } from "react-router-dom";
-import { AppRoutes } from "../Routes";
+import { useAuth } from "../../Security/AuthProvider";
 
 function Sidebar() {
+  const auth = useAuth(); // Call useAuth at the top level
   const location = useLocation();
   //Close sidebar on load
   const [isOpen, setIsOpen] = useState(() => {
@@ -14,45 +15,48 @@ function Sidebar() {
   const toggle = () => {
     setIsOpen((prevIsOpen: unknown) => !prevIsOpen);
   };
-  // Sidebar routes from sidebar data
-  const sidebarDataAndRoutes = SidebarData.map((item, key) => {
-    const correspondingRoute = AppRoutes[key].path;
-    return {
-      ...item,
-      route: correspondingRoute,
-    };
-  });
 
   // Sidebar list and HTML.
-  const sidebarList = sidebarDataAndRoutes.map((item, key) => {
+  const sidebarList = SidebarData.map((item, key) => {
     return (
       <>
-        <li
-          key={key}
-          className={
-            location.pathname.includes(item.route) ? "row active" : "row"
-          }
-        >
-          <Link to={item.route}>
-            <div className="row-icon"> {item.icon} </div>
-            <div
-              className="row-title"
-              style={{ display: isOpen ? "block" : "none" }}
+        {
+          // Check item.role and if user is logged in, the item should be shown if the user has the role.
+          item.role && !auth.isLoggedInAs(item.role) ? null : (
+            <li
+              key={key}
+              className={
+                location.pathname.includes(String(item.route))
+                  ? "row active"
+                  : "row"
+              }
             >
-              <p>{item.title}</p>
-            </div>
-          </Link>
-        </li>
+              <Link to={String(item.route)}>
+                <div className="row-icon"> {item.icon} </div>
+                <div
+                  className="row-title"
+                  style={{ display: isOpen ? "block" : "none" }}
+                >
+                  <p>{item.title}</p>
+                </div>
+              </Link>
+            </li>
+          )
+        }
       </>
     );
   });
 
   // Render HTML.
+  const handleMouseEnter = () => {
+    setIsOpen(true);
+  };
+
   return (
     <div
       className="Sidebar"
       style={{ width: isOpen ? "250px" : "75px" }}
-      onMouseEnter={setIsOpen}
+      onMouseEnter={handleMouseEnter}
       onMouseLeave={toggle}
     >
       <ul className="SidebarList">{sidebarList}</ul>

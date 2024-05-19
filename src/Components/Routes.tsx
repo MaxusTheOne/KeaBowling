@@ -1,4 +1,3 @@
-import MakeReservationPage from "./Pages/Reservation/MakeReservationPage";
 import ReservationsPage from "./Pages/Reservation/ReservationsPage";
 import SchedulePage from "./Pages/Schedule/SchedulePage";
 import EquipmentPage from "./Pages/Equipment/EquipmentPage";
@@ -7,27 +6,48 @@ import MyPage from "./Pages/MyPage/MyPage";
 import LandingPage from "./Pages/LandingPage";
 import Login from "../Security/Login";
 import CreateAccountPage from "./Pages/SignIn/CreateAccountPage";
+import RequireAuth from "../Security/RequireAuth";
 
 const AppRoutes = [
   {
     path: "/my-page",
-    Element: MyPage,
+    Element: () => (
+      <RequireAuth roles={["ADMIN", "EquipmentOperator", "STAFF", "USER"]}>
+        <MyPage />
+      </RequireAuth>
+    ),
   },
   {
     path: "/reservations",
-    Element: ReservationsPage,
+    Element: () => (
+      <RequireAuth roles={["ADMIN", "STAFF"]}>
+        <ReservationsPage />
+      </RequireAuth>
+    ),
   },
   {
     path: "/schedule",
-    Element: SchedulePage,
+    Element: () => (
+      <RequireAuth roles={["ADMIN", "STAFF"]}>
+        <SchedulePage />
+      </RequireAuth>
+    ),
   },
   {
     path: "/equipment",
-    Element: EquipmentPage,
+    Element: () => (
+      <RequireAuth roles={["ADMIN", "EquipmentOperator"]}>
+        <EquipmentPage />
+      </RequireAuth>
+    ),
   },
   {
     path: "/users",
-    Element: UsersPage,
+    Element: () => (
+      <RequireAuth roles={["ADMIN"]}>
+        <UsersPage />
+      </RequireAuth>
+    ),
   },
   // ROUTES NOT IN SIDEBAR
   {

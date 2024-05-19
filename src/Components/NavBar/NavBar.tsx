@@ -26,7 +26,6 @@ export default function NavBar() {
             <li id="nav-signout">
               <NavLink to="/" onClick={handleSignout}>
                 <ExitToAppIcon />
-                <p>Log ud</p>
               </NavLink>
             </li>
           </>
@@ -35,8 +34,8 @@ export default function NavBar() {
           <li
             id="nav-signin"
             className={
-              location.pathname == "/log-ind" ||
-              location.pathname == "/opret-konto"
+              location.pathname == "/login" ||
+              location.pathname == "/new-account"
                 ? "active-header"
                 : ""
             }
