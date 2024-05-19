@@ -3,7 +3,7 @@ import SchedulePage from "./Pages/Schedule/SchedulePage";
 import EquipmentPage from "./Pages/Equipment/EquipmentPage";
 import UsersPage from "./Pages/Users/UsersPage";
 import MyPage from "./Pages/MyPage/MyPage";
-import LandingPage from "./Pages/LandingPage";
+import LandingPage from "./Pages/LandingPage/LandingPage";
 import Login from "../Security/Login";
 import CreateAccountPage from "./Pages/SignIn/CreateAccountPage";
 import RequireAuth from "../Security/RequireAuth";

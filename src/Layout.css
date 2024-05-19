@@ -17,7 +17,7 @@ main {
   margin-left: calc(100px);
   background-color: #1f1f1f;
   border-radius: 10px;
-  border: 2px solid rgb(78, 78, 78);
+  border: 2px solid rgb(110, 110, 110);
   overflow: scroll;
   padding: 20px 70px;
 }

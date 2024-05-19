@@ -8,7 +8,7 @@
   position: sticky;
   top: 0;
   transition: width 0.2s ease-in-out;
-  border-right: 2px solid rgb(78, 78, 78);
+  border-right: 2px solid rgb(110, 110, 110);
 }
 
 .SidebarList {
@@ -19,10 +19,18 @@
 }
 
 #sidebar-logo {
+  display: grid;
+  margin-top: auto;
+  margin-bottom: auto;
+  grid-template-columns: 1fr 2fr;
   height: fit-content;
   scale: 1;
   width: fit-content;
   translate: 0px 0px;
+}
+
+#sidebar-logo p {
+  margin-left: 20px;
 }
 
 #sidebar-logo img {
