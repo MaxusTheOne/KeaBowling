@@ -9,7 +9,7 @@ import Login from "@mui/icons-material/Login";
 import React from "react";
 
 function Sidebar() {
-  const auth = useAuth(); // Call useAuth at the top level
+  const auth = useAuth();
   const location = useLocation();
   //Close sidebar on load
   const [isOpen, setIsOpen] = useState(() => {
@@ -121,9 +121,18 @@ function Sidebar() {
         onMouseLeave={toggle}
       >
         <ul className="SidebarList">
-          <li id="sidebar-logo">
+          <li
+            id="sidebar-logo"
+            className={location.pathname === "/" ? "row active" : "row"}
+          >
             <NavLink to="/">
               <img src="../../../public/Logo.png" alt="" className="row-icon" />
+              <div
+                className="row-title"
+                style={{ display: isOpen ? "block" : "none" }}
+              >
+                <p>Kea Bowling</p>
+              </div>
             </NavLink>
           </li>
           <hr />
