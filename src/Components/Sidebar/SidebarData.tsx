@@ -10,28 +10,45 @@ import ListAlt from "@mui/icons-material/ListAlt";
 
 export const SidebarData = [
   {
-    title: "My Page",
-    role: "Any",
+    title: "Log in",
+    role: ["GUEST"],
     icon: <AccountCircleIcon />,
+    route: "/login",
+  },
+  {
+    title: "My Page",
+    role: ["ADMIN", "EquipmentOperator", "STAFF"],
+    icon: <AccountCircleIcon />,
+    route: "/my-page",
   },
   {
     title: "All Reservations",
-    role: "ReservationStaff Admin",
+    role: ["ADMIN"],
     icon: <ListAlt />,
+    route: "/reservations",
   },
   {
     title: "Work Schedule",
-    role: "ReservationStaff Staff Admin EquipmentOperator",
+    role: ["ADMIN", "EquipmentOperator", "STAFF"],
     icon: <CalendarMonthIcon />,
+    route: "/schedule",
   },
   {
     title: "Equipment",
-    role: "EquipmentOperator",
+    role: ["ADMIN", "EquipmentOperator", "STAFF"],
     icon: <InventoryIcon />,
+    route: "/equipment",
   },
   {
     title: "Users",
-    role: "Admin",
+    role: ["ADMIN"],
     icon: <PeopleAltIcon />,
+    route: "/users",
+  },
+  {
+    title: "Sell Beverages",
+    role: ["ADMIN", "STAFF"],
+    icon: <InventoryIcon />,
+    route: "/beverages",
   },
 ];
