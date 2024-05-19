@@ -32,7 +32,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       </header> */}
       <Sidebar />
       <main
-        className={`page-content ${isBlankBackPage ? "hidden-background" : ""}`}
+        className={`page-content ${
+          isBlankBackPage ? "hidden-background" : ""
+        } `}
       >
         {children}
       </main>
