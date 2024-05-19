@@ -9,13 +9,13 @@
 
 main {
   position: absolute;
-  height: calc(90vh - 75px);
+  height: calc(95vh - 75px);
   width: calc(100vw - 275px);
   text-align: left;
-  top: 6em;
+  top: 2em;
   z-index: 0;
   margin-left: calc(100px);
-  background-color: #131936e7;
+  background-color: #1f1f1f;
   border-radius: 10px;
   overflow: scroll;
   padding: 20px 70px;

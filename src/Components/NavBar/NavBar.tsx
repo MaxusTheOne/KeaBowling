@@ -16,7 +16,7 @@ export default function NavBar() {
         <li id="nav-header-menu-logo">
           <DensityMediumIcon />
         </li>
-        <li id="nav-header-logo">
+        <li id="sidebar-logo" className="row-icon">
           <NavLink to="/">
             <img src="../../../public/Logo.png" alt="" />
           </NavLink>

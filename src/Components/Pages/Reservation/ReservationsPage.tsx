@@ -102,6 +102,7 @@ export default function ReservationsPage() {
           },
         ]}
         roleFilter={false}
+        createButton={true}
         data={mockData.map((item) => ({
           ...item.user,
           peopleAmount: item.bookingInformation.people_amount,

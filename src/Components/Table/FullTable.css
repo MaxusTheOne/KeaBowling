@@ -1,7 +1,6 @@
 .table-container {
   text-align: left;
   overflow: auto;
-  border: 1px solid #ea00ff;
   border-radius: 5px;
   padding: 10px;
   margin-left: auto;
@@ -12,7 +11,7 @@
   flex-direction: column;
   width: 100%;
   margin: auto;
-  box-shadow: 0px 0px 50px rgba(255, 0, 132, 0.1);
+  background-color: #303030;
 }
 
 .data-table {
@@ -65,9 +64,9 @@
   padding: 5px;
   min-width: 100px;
   margin-right: 10px;
-  background-color: rgb(60, 0, 72);
+  background-color: rgb(75, 75, 75);
   border: none;
-  border-radius: 5px;
+  border-radius: 2px;
 }
 
 .table-header input {
@@ -76,7 +75,7 @@
 
 .table-header button:hover {
   cursor: pointer;
-  background-color: rgb(110, 1, 132);
+  background-color: rgb(132, 1, 1);
 }
 
 .table-header button {
@@ -85,14 +84,14 @@
 }
 
 .pageButton {
-  background-color: purple;
+  background-color: rgb(116, 116, 116);
   color: white;
   border: none;
   margin: 5px;
 }
 
 .pageButton:hover {
-  background-color: rgb(209, 0, 209);
+  background-color: rgb(209, 0, 10);
   cursor: pointer;
 }
 
@@ -112,7 +111,6 @@
   width: 100%;
   margin: auto;
   background-color: #050e32;
-  box-shadow: 0px 0px 50px rgba(255, 0, 0, 0.1);
 }
 
 .data-table {
@@ -122,5 +120,5 @@
 }
 
 .data-table th {
-  padding-bottom: 8px
+  padding-bottom: 8px;
 }

@@ -17,7 +17,7 @@ export const SidebarData = [
   },
   {
     title: "My Page",
-    role: ["ADMIN", "EquipmentOperator", "STAFF"],
+    role: ["ADMIN", "EquipmentOperator", "STAFF", "USER"],
     icon: <AccountCircleIcon />,
     route: "/my-page",
   },

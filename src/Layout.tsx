@@ -27,9 +27,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
   return (
     <div className="app-layout">
-      <header>
+      {/* <header>
         <NavBar />
-      </header>
+      </header> */}
       <Sidebar />
       <main
         className={`page-content ${isBlankBackPage ? "hidden-background" : ""}`}

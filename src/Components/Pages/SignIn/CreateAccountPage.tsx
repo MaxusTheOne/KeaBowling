@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useAuth } from "../../../Security/AuthProvider";
 import { User } from "../../../Services/authFacade";
+import { NavLink } from "react-router-dom";
 
 const CreateAccountPage = () => {
   const [user, setUser] = useState({
@@ -44,7 +45,7 @@ const CreateAccountPage = () => {
   return (
     <div className="login-wrapper">
       <form className="login-form" onSubmit={handleSubmit}>
-        <h2 id="login-title">Opret konto</h2>
+        <h2 id="login-title">Opret konto | Kea Bowling</h2>
         <div className="login-form-group">
           <label htmlFor="username">Brugernavn:</label>
           <input
@@ -71,6 +72,7 @@ const CreateAccountPage = () => {
             required
           />
         </div>
+        <hr />
         <div className="login-form-group">
           <label htmlFor="password">Kodeord:</label>
           <input
@@ -95,10 +97,13 @@ const CreateAccountPage = () => {
             required
           />
         </div>
+        <hr />
+        <br />
         {err && <p color="red">{err}</p>}
         <button type="submit" className="login-btn">
           Opret Konto
         </button>
+        <NavLink to="/login">Har du allerede en konto?</NavLink>
       </form>
     </div>
   );

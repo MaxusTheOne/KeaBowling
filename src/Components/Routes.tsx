@@ -7,6 +7,7 @@ import LandingPage from "./Pages/LandingPage";
 import Login from "../Security/Login";
 import CreateAccountPage from "./Pages/SignIn/CreateAccountPage";
 import RequireAuth from "../Security/RequireAuth";
+import BeveragesPage from "./Pages/Beverages/BeveragesPage";
 
 const AppRoutes = [
   {
@@ -22,6 +23,14 @@ const AppRoutes = [
     Element: () => (
       <RequireAuth roles={["ADMIN", "STAFF"]}>
         <ReservationsPage />
+      </RequireAuth>
+    ),
+  },
+  {
+    path: "/beverages",
+    Element: () => (
+      <RequireAuth roles={["ADMIN", "STAFF"]}>
+        <BeveragesPage />
       </RequireAuth>
     ),
   },
