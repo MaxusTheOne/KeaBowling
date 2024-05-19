@@ -1,5 +1,5 @@
 import "./FullTable.css";
-import { ReactNode, useState } from "react";
+import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { format, isValid } from "date-fns";
 
@@ -16,6 +16,8 @@ export interface Props<T> {
   data: T[];
   schema: SchemaItem[];
   roleFilter?: boolean;
+  createButton?: boolean;
+  clickableItems?: boolean;
 }
 
 // DATA -> FullTable -> Generic Objects array ->
@@ -29,6 +31,8 @@ const FullTable = <
   data,
   schema,
   roleFilter = false,
+  createButton = false,
+  clickableItems = true,
 }: Props<T>) => {
   // State
   const navigate = useNavigate();
@@ -151,9 +155,11 @@ const FullTable = <
             </select>
           </>
         )}
-        <button className="add-button" onClick={handleAddClick}>
-          Add
-        </button>
+        {createButton && (
+          <button className="add-button" onClick={handleAddClick}>
+            Add
+          </button>
+        )}
       </div>
       <table className="data-table">
         <thead>
@@ -165,8 +171,11 @@ const FullTable = <
                 onClick={() => handleHeaderClick(item.accessorKey)}
               >
                 {item.header}
-                {sortField === item.accessorKey &&
-                  (sortDirection === "asc" ? " ▲" : " ▼")}
+                {sortField === item.accessorKey
+                  ? sortDirection === "asc"
+                    ? " ▲"
+                    : " ▼"
+                  : " —"}
               </th>
             ))}
           </tr>
@@ -178,7 +187,11 @@ const FullTable = <
                 {schema.map((schemaItem, index) => (
                   <td
                     key={index}
-                    onClick={() => navigate(location.pathname + "/" + item.id)}
+                    onClick={() =>
+                      clickableItems
+                        ? navigate(location.pathname + "/" + item.id)
+                        : null
+                    }
                   >
                     {schemaItem.accessorKey === "roles"
                       ? item.roles?.join(", ") ?? ""
@@ -192,6 +205,7 @@ const FullTable = <
                         )
                       : item[schemaItem.accessorKey as keyof T]?.toString() ??
                         ""}
+                    {schemaItem.accessorKey === "price" ? " kr." : ""}
                   </td>
                 ))}
               </tr>

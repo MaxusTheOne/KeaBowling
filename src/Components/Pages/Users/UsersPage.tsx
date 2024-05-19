@@ -67,6 +67,8 @@ export default function ReservationsPage() {
           ...item,
           id: item.id,
         }))}
+        createButton={true}
+        clickableItems={true}
       />
     </div>
   );
