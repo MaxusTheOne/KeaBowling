@@ -1,13 +1,13 @@
 import "./FullTable.css";
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { format, isValid } from "date-fns";
+import { format } from "date-fns";
 
 // PROPS
 export type SchemaItem = {
   header: string;
   accessorKey: string;
-  type: "string" | "number" | "date";
+  type: "string" | "number" | "date" | "array";
   backgroundColor?: string;
   searchByValue: boolean;
 };
@@ -18,6 +18,7 @@ export interface Props<T> {
   roleFilter?: boolean;
   createButton?: boolean;
   clickableItems?: boolean;
+  error?: string;
 }
 
 // DATA -> FullTable -> Generic Objects array ->
@@ -33,6 +34,7 @@ const FullTable = <
   roleFilter = false,
   createButton = false,
   clickableItems = true,
+  error,
 }: Props<T>) => {
   // State
   const navigate = useNavigate();
@@ -84,16 +86,51 @@ const FullTable = <
     const valueA = a[sortField as keyof T];
     const valueB = b[sortField as keyof T];
 
+    // If either value is missing, don't compare them
+    if (valueA === undefined || valueB === undefined) return 0;
+
     let comparison = 0;
 
     if (schemaItem.type === "number") {
       comparison = (valueA as number) - (valueB as number);
     } else if (schemaItem.type === "string") {
-      comparison = (valueA as string).localeCompare(valueB as string);
+      comparison = (valueA as string).localeCompare(
+        valueB as string,
+        undefined,
+        { numeric: true }
+      );
     } else if (schemaItem.type === "date") {
       comparison =
         new Date(valueA as string).getTime() -
         new Date(valueB as string).getTime();
+    } else if (schemaItem.type === "array") {
+      // If the value is an array, compare the first elements
+      if (
+        Array.isArray(valueA) &&
+        valueA.length > 0 &&
+        typeof valueA[0] === "string" &&
+        Array.isArray(valueB) &&
+        valueB.length > 0 &&
+        typeof valueB[0] === "string"
+      ) {
+        comparison = valueA[0].localeCompare(valueB[0], undefined, {
+          numeric: true,
+        });
+      } else if (
+        Array.isArray(valueA) &&
+        Array.isArray(valueB) &&
+        valueA.length === 0 &&
+        valueB.length === 0
+      ) {
+        // If both arrays are empty, they are equal
+        comparison = 0;
+      } else if (Array.isArray(valueA) && valueA.length === 0) {
+        // If valueA is an empty array, it is considered smaller
+        comparison = -1;
+      } else if (Array.isArray(valueB) && valueB.length === 0) {
+        // If valueB is an empty array, it is considered smaller
+        comparison = 1;
+      }
     }
 
     return sortDirection === "asc" ? comparison : -comparison;
@@ -196,11 +233,9 @@ const FullTable = <
                     {schemaItem.accessorKey === "roles"
                       ? item.roles?.join(", ") ?? ""
                       : schemaItem.type === "date" &&
-                        item[schemaItem.accessorKey as keyof T] instanceof
-                          Date &&
-                        isValid(item[schemaItem.accessorKey as keyof T])
+                        item[schemaItem.accessorKey as keyof T]
                       ? format(
-                          item[schemaItem.accessorKey as keyof T],
+                          item[schemaItem.accessorKey as keyof T] as Date,
                           "MM/dd/yyyy"
                         )
                       : item[schemaItem.accessorKey as keyof T]?.toString() ??
@@ -217,6 +252,7 @@ const FullTable = <
           )}
         </tbody>
       </table>
+      {error ? <p>{error}</p> : null}
       <div></div>
     </div>
   );

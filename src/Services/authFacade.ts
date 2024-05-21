@@ -34,7 +34,7 @@ interface LoginRequest {
 
 export type CinemaToUpdate = {
   name: string;
-}
+};
 
 const authProvider = {
   isAuthenticated: false,
@@ -45,7 +45,13 @@ const authProvider = {
   },
   async create(user_: User): Promise<LoginResponse> {
     const options = makeOptions("POST", user_);
-    const CREATE_URL = API_URL + "/api/user-with-role";
+    const CREATE_URL = API_URL + "/users";
+    const res = await fetch(CREATE_URL, options);
+    return handleHttpErrors(res);
+  },
+  async createWithRoles(user_: User): Promise<CreateRequest> {
+    const options = makeOptions("POST", user_);
+    const CREATE_URL = API_URL + "/users";
     const res = await fetch(CREATE_URL, options);
     return handleHttpErrors(res);
   },

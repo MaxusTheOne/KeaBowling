@@ -16,11 +16,27 @@ export interface Reservation {
 
 export interface User {
   id: number;
-  date_created: Date;
-  date_edited?: Date;
-  date_last_login?: Date;
+  created: Date;
+  edited?: Date;
   email: string;
-  name: string;
   roles: string[];
   username: string;
+}
+
+export interface APIUser {
+  id: string;
+  created: string;
+  edited?: string;
+  email: string;
+  username: string;
+  roles: string[];
+}
+
+export interface Equipment {
+  id: number;
+  name: string;
+  description: string;
+  brand: string;
+  type: string;
+  stockAmount: number;
 }

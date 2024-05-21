@@ -60,7 +60,7 @@ export default function ReservationsPage() {
 
   return (
     <div id="reservations-page-container">
-      <h1>Reservations Page</h1>
+      <h1>Reservations</h1>
       <FullTable
         schema={[
           {

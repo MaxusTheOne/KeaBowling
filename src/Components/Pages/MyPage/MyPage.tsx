@@ -1,4 +1,6 @@
+import { Link } from "react-router-dom";
 import FullTable from "../../Table/FullTable";
+import "./MyPage.css";
 
 export default function MyPage() {
   const rolesString = localStorage
@@ -58,11 +60,16 @@ export default function MyPage() {
 
   return (
     <div id="my-page-container">
-      <h1>My Page</h1>
+      <h1>User:</h1>
       <p>Logged in as: {localStorage.getItem("username")}</p>
       <p>Role: {rolesString}</p>
       <br />
       <h1>Your Reservations</h1>
+      <Link to="/my-page/calendar" className="link-no-underline">
+        <div id="to-calendar-button">
+          <p>View Calendar</p>
+        </div>
+      </Link>
       <FullTable
         schema={[
           {

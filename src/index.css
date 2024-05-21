@@ -13,12 +13,12 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url("../public/background-image.jpg");
+  background-image: url("../background-image.jpg");
   background-color: rgb(66, 66, 66);
   background-size: auto 140%;
   background-position: 39.5% center;
   background-repeat: no-repeat;
-  filter: saturate(0.7) brightness(0.7) hue-rotate(320deg);
+  filter: saturate(0.5) brightness(0.5) hue-rotate(320deg);
   z-index: -1; /* Keep the background behind the content */
 }
 

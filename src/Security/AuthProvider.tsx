@@ -40,6 +40,12 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
     });
   };
 
+  const createWithRoles = async (user_: User) => {
+    return authProvider.create(user_).then((user) => {
+      return user;
+    });
+  };
+
   //Observe how we can sign user out without involving the backend (is that (always) good?)
   const signOut = () => {
     setUsername(null);
@@ -66,6 +72,7 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
     signIn,
     signOut,
     create,
+    createWithRoles,
     roles: [],
   };
 

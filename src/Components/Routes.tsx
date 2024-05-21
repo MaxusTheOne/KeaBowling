@@ -9,6 +9,8 @@ import CreateAccountPage from "./Pages/SignIn/CreateAccountPage";
 import RequireAuth from "../Security/RequireAuth";
 import BeveragesPage from "./Pages/Beverages/BeveragesPage";
 import PageNotFound from "./Pages/PageNotFound/PageNotFound";
+import UsersPageAdd from "./Pages/Users/UsersPageAdd";
+import MyPageCalendar from "./Pages/MyPage/MyPageCalendar/MyPageCalendar";
 
 const AppRoutes = [
   {
@@ -56,6 +58,22 @@ const AppRoutes = [
     Element: () => (
       <RequireAuth roles={["ADMIN"]}>
         <UsersPage />
+      </RequireAuth>
+    ),
+  },
+  {
+    path: "/users/add",
+    Element: () => (
+      <RequireAuth roles={["ADMIN"]}>
+        <UsersPageAdd />
+      </RequireAuth>
+    ),
+  },
+  {
+    path: "/my-page/calendar",
+    Element: () => (
+      <RequireAuth roles={["ADMIN", "EquipmentOperator", "STAFF", "USER"]}>
+        <MyPageCalendar />
       </RequireAuth>
     ),
   },
