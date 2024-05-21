@@ -105,3 +105,8 @@
 .data-table th {
   padding-bottom: 8px;
 }
+
+.data-table tbody tr:hover {
+  cursor: pointer;
+  background-color: rgb(136, 136, 136);
+}

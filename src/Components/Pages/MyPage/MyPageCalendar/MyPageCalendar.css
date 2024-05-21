@@ -1,0 +1,100 @@
+.link-no-underline {
+  text-decoration: none;
+}
+
+#calendar-page-title {
+  position: absolute;
+  left: 150px;
+}
+
+#calendar-page-container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+#return-button {
+  width: 1em;
+  height: auto;
+}
+
+#calendar-container {
+  width: 100%;
+  height: calc(95vh - 210px);
+  border-radius: 10px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+.rbc-event {
+  background-color: #00d9ff;
+  color: #fff;
+  border-radius: 4px;
+  padding: 5px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+.rbc-toolbar {
+  padding: 10px 0;
+  background-color: none;
+  border-bottom: 1px solid #555;
+  color: white;
+}
+
+.rbc-btn-group button {
+  color: #ffffff;
+  background-color: #444;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+}
+
+.rbc-btn-group button:active,
+.rbc-btn-group button.rbc-active {
+  background-color: #555;
+}
+
+.rbc-toolbar .rbc-btn-group button {
+  color: #ffffff;
+  background-color: #444;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+}
+
+.rbc-toolbar .rbc-btn-group button:active,
+.rbc-toolbar .rbc-btn-group button.rbc-active {
+  background-color: #2e4046;
+}
+
+.rbc-today {
+  background-color: rgb(66, 80, 79) !important;
+  color: #00f7ff !important;
+}
+
+.rbc-now {
+  color: #fff;
+}
+
+.rbc-current {
+  color: #00ffea;
+}
+
+.rbc-off-range-bg {
+  background-color: #747474 !important;
+}
+
+.rbc-day-bg {
+  background-color: #444;
+}
+
+.rbc-row-bg {
+  background-color: #444;
+}
+
+.rbc-time-content > * + * > * {
+  border-left: 1px solid #4c4c4c !important;
+}

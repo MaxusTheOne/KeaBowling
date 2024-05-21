@@ -43,13 +43,13 @@ export default function LandingPage() {
       </div>
 
       <div id="image-holder">
-        <img src="../../../../public/image.jpg" alt="Bowling Alley" />
+        <img src="../../../../image.jpg" alt="Bowling Alley" />
       </div>
 
       <div id="landing-page-footer">
         <div id="github-links">
           <a href="https://github.com/MaxusTheOne/KeaBowling">
-            <img src="../../../../public/github-mark-white.png"></img>
+            <img src="../../../../github-mark-white.png"></img>
           </a>
         </div>
         <p>Developed by Markus Lindeberg Bille & Malte Mørkeberg Sørensen</p>

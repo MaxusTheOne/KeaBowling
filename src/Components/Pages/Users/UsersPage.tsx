@@ -1,33 +1,65 @@
+import { useEffect, useState } from "react";
 import FullTable from "../../Table/FullTable";
 import "./UsersPage.css";
+import { getUsers } from "../../../Services/apiFacade";
+import { User, APIUser } from "../../../Types";
+import { parseISO } from "date-fns";
 
-const mockData = [
-  {
-    id: 1,
-    date_created: new Date("11/01/2023"),
-    date_edited: new Date("03/03/2024"),
-    date_last_login: new Date("18.04.2024"),
-    email: "mockemailaddress@mail.com",
-    name: "James Johnson McAdams",
-    roles: ["admin", "user", "reservation-staff"],
-  },
-];
+// const mockData = [
+//   {
+//     id: 1,
+//     date_created: new Date("11/01/2023"),
+//     date_edited: new Date("03/03/2024"),
+//     date_last_login: new Date("18.04.2024"),
+//     email: "mockemailaddress@mail.com",
+//     username: "James Johnson McAdams",
+//     roles: ["admin", "user", "reservation-staff"],
+//   },
+// ];
 
 export default function ReservationsPage() {
+  const [users, setUsers] = useState<Array<User>>([]);
+  const [error, setError] = useState<string | null>(null);
+
+  // Maps APIUser into User object
+  function mapApiUserToUser(apiUser: APIUser): User {
+    return {
+      id: Number(apiUser.id),
+      username: apiUser.username,
+      email: apiUser.email,
+      roles: apiUser.roles,
+      created: parseISO(apiUser.created),
+      edited: apiUser.edited ? parseISO(apiUser.edited) : undefined,
+    };
+  }
+
+  useEffect(() => {
+    getUsers()
+      .then((data: APIUser[]) => {
+        const formattedUsers = data.map(mapApiUserToUser); // Map each APIUser to a User instead
+        setUsers(formattedUsers);
+      })
+      .catch((err) => setError(err.message));
+  }, []);
+
+  useEffect(() => {
+    console.log(users);
+  }, [users]);
+
   return (
     <div id="users-page-container">
-      <h1>Users Page</h1>
+      <h1>Users</h1>
       <FullTable
         schema={[
           {
-            header: "Id",
+            header: "ID",
             accessorKey: "id",
             type: "number",
             searchByValue: true,
           },
           {
-            header: "Name",
-            accessorKey: "name",
+            header: "Username",
+            accessorKey: "username",
             type: "string",
             searchByValue: true,
           },
@@ -40,35 +72,30 @@ export default function ReservationsPage() {
           {
             header: "Roles",
             accessorKey: "roles",
-            type: "string",
+            type: "array",
             searchByValue: true,
           },
           {
-            header: "Last Login",
-            accessorKey: "date_last_login",
-            type: "date",
-            searchByValue: false,
-          },
-          {
             header: "Last Edit",
-            accessorKey: "date_edited",
+            accessorKey: "edited",
             type: "date",
             searchByValue: false,
           },
           {
             header: "Date Created",
-            accessorKey: "date_created",
+            accessorKey: "created",
             type: "date",
             searchByValue: false,
           },
         ]}
         roleFilter={true}
-        data={mockData.map((item) => ({
+        data={users.map((item) => ({
           ...item,
           id: item.id,
         }))}
         createButton={true}
         clickableItems={true}
+        error={error || ""}
       />
     </div>
   );
