@@ -6,7 +6,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0px 0px 40px rgba(0, 255, 255, 0.384);
 }
 
 #login-title {
@@ -40,10 +39,12 @@ button:focus {
 }
 
 .login-form {
-  width: 300px;
+  width: 350px;
   padding: 20px;
   background: rgb(31, 31, 31);
-  border-radius: 5px;
+  border-radius: 10px;
+  border: 2px solid rgba(0, 255, 255, 0.171);
+  box-shadow: 0px 0px 40px rgba(0, 255, 255, 0.384);
 }
 
 .login-form h2 {
