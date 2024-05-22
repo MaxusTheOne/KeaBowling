@@ -1,3 +1,4 @@
+import { Equipment, EquipmentDTO } from "../Types";
 import { API_URL } from "../settings";
 import { User, UserToUpdate } from "./authFacade";
 import { makeOptions, handleHttpErrors } from "./fetchUtils";
@@ -121,6 +122,12 @@ async function getEquipment() {
   return fetch(API_URL + "/equipment", options).then(handleHttpErrors);
 }
 
+// Create equipment
+async function postEquipment(equipment: EquipmentDTO): Promise<Equipment> {
+  const options = makeOptions("POST", equipment, undefined, true);
+  return fetch(`${API_URL}/equipment`, options).then(handleHttpErrors);
+}
+
 async function deleteUser(username: string) {
   const token = localStorage.getItem("token");
   const headers = {
@@ -205,4 +212,5 @@ export {
   getShowing,
   getUsers,
   getEquipment,
+  postEquipment,
 };
