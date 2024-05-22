@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useAuth } from "../../../Security/AuthProvider";
 import { User } from "../../../Services/authFacade";
+import { NavLink } from "react-router-dom";
 
 const CreateAccountPage = () => {
   const [user, setUser] = useState({
@@ -30,7 +31,7 @@ const CreateAccountPage = () => {
           .signIn(user)
           .then(() => {
             // wait 1 second to ensure that the user is created before navigating.
-            setTimeout(() => (window.location.pathname = "/"), 1000);
+            setTimeout(() => (window.location.pathname = "/my-page"), 1000);
           })
           .catch((err) => {
             setErr(err);
@@ -44,9 +45,9 @@ const CreateAccountPage = () => {
   return (
     <div className="login-wrapper">
       <form className="login-form" onSubmit={handleSubmit}>
-        <h2 id="login-title">Opret konto</h2>
+        <h2 id="login-title">Create Account | Kea Bowling</h2>
         <div className="login-form-group">
-          <label htmlFor="username">Brugernavn:</label>
+          <label htmlFor="username">Username:</label>
           <input
             type="text"
             name="username"
@@ -60,7 +61,7 @@ const CreateAccountPage = () => {
           />
         </div>
         <div className="login-form-group">
-          <label htmlFor="email">E-mail adresse:</label>
+          <label htmlFor="email">E-mail address:</label>
           <input
             type="email"
             name="email"
@@ -71,8 +72,9 @@ const CreateAccountPage = () => {
             required
           />
         </div>
+        <hr />
         <div className="login-form-group">
-          <label htmlFor="password">Kodeord:</label>
+          <label htmlFor="password">Password:</label>
           <input
             type="password"
             name="password"
@@ -84,7 +86,7 @@ const CreateAccountPage = () => {
           />
         </div>
         <div className="login-form-group">
-          <label htmlFor="password">Skriv kodeordet igen:</label>
+          <label htmlFor="password">Confirm Password:</label>
           <input
             type="password"
             name="confirmPassword"
@@ -95,10 +97,14 @@ const CreateAccountPage = () => {
             required
           />
         </div>
-        {err && <p color="red">{err}</p>}
+        <hr />
+        <br />
+
         <button type="submit" className="login-btn">
-          Opret Konto
+          Create Account
         </button>
+        <NavLink to="/login">Alread have an account? Sign in.</NavLink>
+        {err && <p className="login-error">{err}</p>}
       </form>
     </div>
   );

@@ -1,0 +1,112 @@
+.table-container {
+  text-align: left;
+  overflow: auto;
+  border-radius: 5px;
+  padding: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: auto;
+  background-color: #3b3b3b;
+  border: 2px solid rgb(78, 78, 78);
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: auto;
+}
+
+.data-table th {
+  padding: 5px;
+  border-bottom: 1px solid gray;
+  text-align: left;
+  /* Make the headers unselectable */
+  user-select: none;
+  cursor: pointer;
+}
+
+.data-table th.edit-header,
+.data-table th.delete-header,
+.data-table td.list-button {
+  text-align: center;
+}
+
+.edit-header,
+.delete-header,
+.list-button {
+  width: 100px;
+  text-align: center;
+}
+
+.table-header {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  width: 90%;
+  position: sticky;
+  left: 0;
+  top: 0;
+  padding: 5px;
+  height: fit-content;
+}
+
+.table-header * {
+  margin: 5px;
+}
+
+.table-header input,
+.table-header select,
+.table-header button {
+  color: white;
+  height: 2em;
+  padding: 5px;
+  min-width: 100px;
+  margin-right: 10px;
+  background-color: rgb(75, 75, 75);
+  border: none;
+  border-radius: 2px;
+}
+
+.table-header input {
+  width: 200px;
+}
+
+.table-header button:hover {
+  cursor: pointer;
+  background-color: rgb(100, 100, 100);
+}
+
+.table-header button {
+  right: 0;
+  position: absolute;
+}
+
+.pageButton {
+  background-color: rgb(116, 116, 116);
+  color: white;
+  border: none;
+  margin: 5px;
+}
+
+.pageButton:hover {
+  background-color: rgb(209, 0, 10);
+  cursor: pointer;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: auto;
+}
+
+.data-table th {
+  padding-bottom: 8px;
+}
+
+.data-table tbody tr:hover {
+  cursor: pointer;
+  background-color: rgb(136, 136, 136);
+}

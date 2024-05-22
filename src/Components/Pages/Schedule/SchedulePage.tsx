@@ -1,3 +1,3 @@
 export default function SchedulePage() {
-  return <h1>Schedule Page</h1>;
+  return <h1>Work Schedule</h1>;
 }
