@@ -14,6 +14,18 @@ export interface Reservation {
   user?: User;
 }
 
+export interface ReservationType {
+  id: number;
+  userId: number;
+  userMail: string;
+  bookingType: string;
+  peopleAmount: number;
+  reservationDateTime: Date;
+  reservationLengthMinutes: number;
+  childFriendly: boolean;
+  
+}
+
 export interface User {
   id: number;
   created: Date;

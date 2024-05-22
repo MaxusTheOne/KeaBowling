@@ -1,103 +1,9 @@
+import { Reservation, ReservationType } from "../Types";
 import { API_URL } from "../settings";
 import { User, UserToUpdate } from "./authFacade";
 import { makeOptions, handleHttpErrors } from "./fetchUtils";
 
-interface Movie {
-  id?: number;
-  name: string;
-  posterUrl: string;
-  description: string;
-  releaseDate: Date | string;
-  duration: number;
-  actors: Array<string>;
-  genres: Array<string>;
-  created: Date | string;
-  edited: Date | string;
-}
 
-// async function getCinemas(): Promise<Array<Cinema>> {
-//   const options = makeOptions("GET", null, undefined, true);
-//   return fetch(`${API_URL}/cinemas`, options).then(handleHttpErrors);
-// }
-// async function getCinema(id: number): Promise<Cinema> {
-//   const options = makeOptions("GET", null, undefined, true);
-//   return fetch(`${API_URL}/cinemas/${id}`, options).then(handleHttpErrors);
-// }
-// async function postCinema(cinema: Cinema): Promise<Cinema> {
-//   const options = makeOptions("POST", cinema, undefined, true);
-//   return fetch(`${API_URL}/cinemas`, options).then(handleHttpErrors);
-// }
-// async function putCinema(cinema: Cinema): Promise<Cinema> {
-//   const options = makeOptions("PUT", cinema, undefined, true);
-//   return fetch(`${API_URL}/cinemas/${cinema.id}`, options).then(
-//     handleHttpErrors
-//   );
-// }
-// async function deleteCinema(id: number): Promise<Cinema> {
-//   const options = makeOptions("DELETE", null, undefined, true);
-//   return fetch(`${API_URL}/cinemas/${id}`, options).then(handleHttpErrors);
-// }
-
-// async function getHalls(): Promise<Array<Hall>> {
-//   const options = makeOptions("GET", null, undefined, true);
-//   return await fetch(`${API_URL}/halls`, options).then(handleHttpErrors);
-// }
-// async function deleteHall(id: number) {
-//   const options = makeOptions("DELETE", null, undefined, true);
-
-//   const response = await fetch(`${API_URL}/halls/${id}`, options);
-
-//   if (response.ok) {
-//     console.log("Hall deleted.");
-//   }
-// }
-// async function postHall(hall: Hall): Promise<Hall> {
-//   const options = makeOptions("POST", hall, undefined, true);
-//   return fetch(`${API_URL}/halls`, options).then(handleHttpErrors);
-// }
-
-// async function getRows(): Promise<Array<Row>> {
-//   const options = makeOptions("GET", null, undefined, true);
-//   return fetch(`${API_URL}/rows`, options).then(handleHttpErrors);
-// }
-
-// async function putHall(hall: Hall): Promise<Hall> {
-//   const options = makeOptions("PUT", hall, undefined, true);
-//   return fetch(`${API_URL}/halls`, options).then(handleHttpErrors);
-// }
-
-// async function getMovies(): Promise<Array<Movie>> {
-//   const res = fetch(MOVIES_URL).then(handleHttpErrors);
-//   return res;
-// }
-
-// async function getMovie(id: number): Promise<Movie> {
-//   return await fetch(MOVIES_URL + "/" + id).then(handleHttpErrors);
-// }
-
-// async function addMovie(newMovie: Movie): Promise<Movie> {
-//   const options = makeOptions("POST", newMovie, undefined, true);
-//   return fetch(MOVIES_URL, options).then(handleHttpErrors);
-// }
-
-// async function deleteMovie(id: number) {
-//   const options = makeOptions("DELETE", null, undefined, true);
-
-//   const response = await fetch(`${MOVIES_URL}/${id}`, options);
-
-//   if (response.ok) {
-//     console.log("Movie deleted.");
-//   }
-// }
-// async function updateMovie(updatedMovie: Movie): Promise<Movie> {
-//   if (!updatedMovie.id) {
-//     throw new Error("Movie must have an id to be updated");
-//   }
-
-//   const options = makeOptions("PUT", updatedMovie, undefined, true);
-//   const URL = `${MOVIES_URL}/${updatedMovie.id}`;
-//   return fetch(URL, options).then(handleHttpErrors);
-// }
 
 async function getUsers() {
   const token = localStorage.getItem("token");
@@ -154,13 +60,37 @@ async function createUser(user: User) {
   return fetch(API_URL + "/api/user-with-role", options).then(handleHttpErrors);
 }
 
-async function getReservationById(id: number) {
+async function getReservations(): Promise<ReservationType[]> {
+  console.log("getReservations");
+  
+  const token = localStorage.getItem("token");
+  const headers = {
+    Authorization: `Bearer ${token}`,
+  };
+  const options = makeOptions("GET", null, headers, true);
+  const results = fetch(API_URL + "/reservations", options).then(handleHttpErrors);
+  console.log("results", results);
+  return results;
+  
+}
+
+async function getReservationById(id: number) :Promise<ReservationType> {
   const token = localStorage.getItem("token");
   const headers = {
     Authorization: `Bearer ${token}`,
   };
   const options = makeOptions("GET", null, headers, true);
   return fetch(API_URL + "/reservations/" + id, options).then(handleHttpErrors);
+}
+
+async function updateReservation(reservation: ReservationType) {
+  const token = localStorage.getItem("token");
+  const headers = {
+    Authorization: `Bearer ${token}`,
+  };
+  const options = makeOptions("PUT", reservation, headers, true);
+  return fetch(API_URL + "/reservations/" + reservation.id, options).then(handleHttpErrors);
+
 }
 
 async function getUserReservations() {
@@ -203,7 +133,7 @@ async function getShowing(id: number) {
   }
 }
 
-export type { Movie };
+
 // eslint-disable-next-line react-refresh/only-export-components
 export {
   deleteUser,
@@ -214,4 +144,7 @@ export {
   getShowing,
   getUsers,
   getEquipment,
+  getReservationById,
+  updateReservation,
+  getReservations
 };
