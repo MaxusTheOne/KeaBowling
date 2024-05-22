@@ -40,3 +40,11 @@ export interface Equipment {
   type: string;
   stockAmount: number;
 }
+
+export interface EquipmentDTO {
+  name: string;
+  description: string;
+  brand: string;
+  type: string;
+  stockAmount: number;
+}

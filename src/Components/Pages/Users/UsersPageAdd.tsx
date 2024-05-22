@@ -2,8 +2,10 @@ import { useState } from "react";
 import { User } from "../../../Services/authFacade";
 import "./UsersPageAdd.css";
 import { useAuth } from "../../../Security/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 export default function UsersPageAdd() {
+  const navigate = useNavigate();
   const [err, setErr] = useState("");
   const [user, setUser] = useState({
     username: "",
@@ -25,9 +27,9 @@ export default function UsersPageAdd() {
 
     console.log(user);
 
-    auth.createWithRoles(user).then((res) => {
+    auth.createWithRoles(user).then(() => {
       console.log(user);
-      console.log(res);
+      navigate("/users");
     });
   }
 
