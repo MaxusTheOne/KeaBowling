@@ -1,4 +1,5 @@
 import ReservationsPage from "./Pages/Reservation/ReservationsPage";
+import ReservationsDetailPage from "./Pages/Reservation/ReservationDetailPage";
 import SchedulePage from "./Pages/Schedule/SchedulePage";
 import EquipmentPage from "./Pages/Equipment/EquipmentPage";
 import UsersPage from "./Pages/Users/UsersPage";
@@ -26,6 +27,14 @@ const AppRoutes = [
     Element: () => (
       <RequireAuth roles={["ADMIN", "STAFF"]}>
         <ReservationsPage />
+      </RequireAuth>
+    ),
+  },
+  {
+    path: "/reservations/:id",
+    Element: () => (
+      <RequireAuth roles={["ADMIN", "STAFF"]}>
+        <ReservationsDetailPage/>
       </RequireAuth>
     ),
   },

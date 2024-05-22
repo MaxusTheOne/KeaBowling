@@ -154,6 +154,15 @@ async function createUser(user: User) {
   return fetch(API_URL + "/api/user-with-role", options).then(handleHttpErrors);
 }
 
+async function getReservationById(id: number) {
+  const token = localStorage.getItem("token");
+  const headers = {
+    Authorization: `Bearer ${token}`,
+  };
+  const options = makeOptions("GET", null, headers, true);
+  return fetch(API_URL + "/reservations/" + id, options).then(handleHttpErrors);
+}
+
 async function getUserReservations() {
   const token = localStorage.getItem("token");
   const headers = {
