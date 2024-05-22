@@ -1,3 +1,4 @@
+import { Equipment, EquipmentDTO } from "../Types";
 import { Reservation, ReservationType } from "../Types";
 import { API_URL } from "../settings";
 import { User, UserToUpdate } from "./authFacade";
@@ -25,6 +26,12 @@ async function getEquipment() {
   };
   const options = makeOptions("GET", null, headers, true);
   return fetch(API_URL + "/equipment", options).then(handleHttpErrors);
+}
+
+// Create equipment
+async function postEquipment(equipment: EquipmentDTO): Promise<Equipment> {
+  const options = makeOptions("POST", equipment, undefined, true);
+  return fetch(`${API_URL}/equipment`, options).then(handleHttpErrors);
 }
 
 async function deleteUser(username: string) {
@@ -146,5 +153,6 @@ export {
   getEquipment,
   getReservationById,
   updateReservation,
-  getReservations
+  getReservations,
+  postEquipment,
 };

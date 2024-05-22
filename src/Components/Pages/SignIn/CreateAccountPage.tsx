@@ -103,7 +103,7 @@ const CreateAccountPage = () => {
         <button type="submit" className="login-btn">
           Create Account
         </button>
-        <NavLink to="/login">Alread have an account? Sign in.</NavLink>
+        <NavLink to="/login">Already have an account? Sign in.</NavLink>
         {err && <p className="login-error">{err}</p>}
       </form>
     </div>

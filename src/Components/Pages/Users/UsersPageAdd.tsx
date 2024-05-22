@@ -2,8 +2,10 @@ import { useState } from "react";
 import { User } from "../../../Services/authFacade";
 import "./UsersPageAdd.css";
 import { useAuth } from "../../../Security/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 export default function UsersPageAdd() {
+  const navigate = useNavigate();
   const [err, setErr] = useState("");
   const [user, setUser] = useState({
     username: "",
@@ -18,17 +20,16 @@ export default function UsersPageAdd() {
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    const formData = new FormData(event.currentTarget);
-    const user = Object.fromEntries(formData) as unknown as User;
-
     if (user.password !== user.confirmPassword) {
       setErr("Kodeordene er ikke ens");
       return;
     }
 
-    auth.create(user).then((res) => {
+    console.log(user);
+
+    auth.createWithRoles(user).then(() => {
       console.log(user);
-      console.log(res);
+      navigate("/users");
     });
   }
 
@@ -133,7 +134,7 @@ export default function UsersPageAdd() {
           />
         </div>
         <div className="choice-container">
-          <label htmlFor="shiftManager">Staff</label>
+          <label htmlFor="shiftManager">Regular Staff</label>
           <input
             type="checkbox"
             id="staff"
