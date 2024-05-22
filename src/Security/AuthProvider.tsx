@@ -10,6 +10,7 @@ interface AuthContextType {
   signOut: () => void;
   isLoggedIn: () => boolean;
   isLoggedInAs: (role: string[]) => boolean;
+  createWithRoles: (user: User) => Promise<User>;
   roles: string[];
 }
 
@@ -41,7 +42,7 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const createWithRoles = async (user_: User) => {
-    return authProvider.create(user_).then((user) => {
+    return authProvider.adminCreate(user_).then((user) => {
       return user;
     });
   };
