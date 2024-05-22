@@ -1,9 +1,8 @@
-import BookmarkAddIcon from "@mui/icons-material/BookmarkAdd";
-import ListAltIcon from "@mui/icons-material/ListAlt";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import InventoryIcon from "@mui/icons-material/Inventory";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import ListAlt from "@mui/icons-material/ListAlt";
 
 // NOTE: Sidebar data is loaded in sequence together with Routes.tsx ("../Routes.tsx").
 // This means that the order of the routes and the order of the sidebar items HAS to be the same - otherwise the items will route to other routes when clicked on...
@@ -11,33 +10,45 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 export const SidebarData = [
   {
-    title: "My Page",
-    role: "Any",
+    title: "Log in",
+    role: ["GUEST"],
     icon: <AccountCircleIcon />,
+    route: "/login",
   },
   {
-    title: "Make Reservation",
-    role: "any",
-    icon: <BookmarkAddIcon />,
+    title: "My Page",
+    role: ["ADMIN", "EquipmentOperator", "STAFF", "USER"],
+    icon: <AccountCircleIcon />,
+    route: "/my-page",
   },
   {
     title: "All Reservations",
-    role: "ReservationStaff Admin",
-    icon: <ListAltIcon />,
+    role: ["ADMIN"],
+    icon: <ListAlt />,
+    route: "/reservations",
   },
   {
     title: "Work Schedule",
-    role: "ReservationStaff Staff Admin EquipmentOperator",
+    role: ["ADMIN", "EquipmentOperator", "STAFF"],
     icon: <CalendarMonthIcon />,
+    route: "/schedule",
   },
   {
     title: "Equipment",
-    role: "EquipmentOperator",
+    role: ["ADMIN", "EquipmentOperator", "STAFF"],
     icon: <InventoryIcon />,
+    route: "/equipment",
   },
   {
     title: "Users",
-    role: "Admin",
+    role: ["ADMIN"],
     icon: <PeopleAltIcon />,
+    route: "/users",
+  },
+  {
+    title: "Sell Beverages",
+    role: ["ADMIN", "STAFF"],
+    icon: <InventoryIcon />,
+    route: "/beverages",
   },
 ];

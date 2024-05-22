@@ -1,9 +1,11 @@
 .login-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 120px;
-  transform: translateX(-30px);
 }
 
 #login-title {
@@ -18,10 +20,10 @@ button:focus {
 }
 
 .login-error {
-  color: rgb(255, 0, 230);
+  color: rgb(255, 0, 0);
   text-align: center;
   margin-bottom: 10px;
-  animation: forwards error 0.5s;
+  animation: forwards error 0.2s;
 }
 
 @keyframes error {
@@ -37,17 +39,12 @@ button:focus {
 }
 
 .login-form {
-  width: 300px;
+  width: 350px;
   padding: 20px;
-  background: rgb(2, 0, 36);
-  background: linear-gradient(
-    207deg,
-    rgb(0, 11, 36) 0%,
-    rgb(7, 25, 57) 35%,
-    rgb(42, 9, 9) 100%
-  );
+  background: rgb(31, 31, 31);
   border-radius: 10px;
-  box-shadow: 0 0 30px rgba(255, 0, 0, 0.244);
+  border: 2px solid rgba(0, 255, 255, 0.171);
+  box-shadow: 0px 0px 40px rgba(0, 255, 255, 0.384);
 }
 
 .login-form h2 {
@@ -91,13 +88,18 @@ button:focus {
 .login-form a {
   padding-top: 20px;
   text-decoration: none;
-  color: #95edff;
+  color: #00ffff;
   text-align: center;
   display: block;
   margin-top: 10px;
 }
 
+.login-form a:hover {
+  color: #008888;
+}
+
 .login-btn:hover {
-  background-color: rgb(192, 90, 255);
-  box-shadow: 0px 0px 20px rgba(255, 0, 234, 0.467);
+  background-color: rgb(0, 255, 242);
+  box-shadow: 0px 0px 20px rgba(0, 247, 255, 0.467);
+  color: black;
 }

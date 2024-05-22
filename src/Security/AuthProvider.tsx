@@ -10,6 +10,7 @@ interface AuthContextType {
   signOut: () => void;
   isLoggedIn: () => boolean;
   isLoggedInAs: (role: string[]) => boolean;
+  roles: string[];
 }
 
 const AuthContext = createContext<AuthContextType>(null!);
@@ -39,6 +40,12 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
     });
   };
 
+  const createWithRoles = async (user_: User) => {
+    return authProvider.create(user_).then((user) => {
+      return user;
+    });
+  };
+
   //Observe how we can sign user out without involving the backend (is that (always) good?)
   const signOut = () => {
     setUsername(null);
@@ -58,7 +65,16 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
     return roles?.some((r) => role.includes(r)) || false;
   }
 
-  const value = { username, isLoggedIn, isLoggedInAs, signIn, signOut, create };
+  const value = {
+    username,
+    isLoggedIn,
+    isLoggedInAs,
+    signIn,
+    signOut,
+    create,
+    createWithRoles,
+    roles: [],
+  };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

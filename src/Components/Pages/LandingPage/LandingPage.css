@@ -1,0 +1,92 @@
+.landing-page {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: center;
+  align-items: stretch; /* Make grid items fill the grid container */
+  width: 100%;
+  margin: auto auto 0 auto;
+  height: calc(
+    100vh - 20vh
+  ); /* Subtract the padding-top from the viewport height */
+  overflow: scroll;
+}
+
+#text-holder {
+  padding-top: 10vh;
+  margin-right: 150px;
+  font-size: 1.3em;
+}
+
+#text-paragraphs {
+  border-bottom: 1px solid teal;
+}
+
+#image-holder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80%; /* Make sure the container takes up the full height */
+  padding: 20px;
+  width: 80%;
+  margin: 0 0 0 1em;
+}
+
+#image-holder img {
+  max-width: 100%;
+}
+
+#double-button-holder {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  width: 90%;
+  gap: 10px;
+}
+
+.landing-page-button {
+  text-align: center;
+  border-radius: 0px;
+  border: 1px solid gray;
+  font-family: Barlow, sans-serif;
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  background-color: #858585;
+  width: 30%;
+  padding: 20px;
+  font-size: 1em;
+  font-weight: 300;
+}
+
+.landing-page-button:hover {
+  background-color: teal;
+  cursor: pointer;
+  color: white;
+}
+
+#landing-page-footer {
+  position: absolute;
+  text-align: center;
+  width: 90%;
+  bottom: 20px;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  color: gray;
+}
+
+#landing-page-footer img {
+  width: 30px;
+  height: 30px;
+  margin: 0 10px;
+}
+
+@media screen and (max-width: 1600px) {
+  #image-holder {
+    display: none;
+  }
+
+  #text-holder {
+    margin-right: 0;
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+}
