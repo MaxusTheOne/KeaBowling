@@ -36,9 +36,9 @@ const Login = () => {
   return (
     <div className="login-wrapper">
       <form className="login-form" onSubmit={handleSubmit}>
-        <h2>Kea Bowling | Log ind</h2>
+        <h2>Kea Bowling | Login</h2>
         <div className="login-form-group">
-          <label htmlFor="username">Brugernavn</label>
+          <label htmlFor="username">Username</label>
           <input
             type="text"
             name="username"
@@ -50,7 +50,7 @@ const Login = () => {
           />
         </div>
         <div className="login-form-group">
-          <label htmlFor="password">Kodeord</label>
+          <label htmlFor="password">Password</label>
           <input
             type="password"
             name="password"
@@ -67,7 +67,7 @@ const Login = () => {
         <button type="submit" className="login-btn">
           Login
         </button>
-        <NavLink to="/new-account">Har du ikke en konto? Opret nu!</NavLink>
+        <NavLink to="/new-account">Don't have an account?</NavLink>
       </form>
     </div>
   );
