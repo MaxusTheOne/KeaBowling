@@ -90,7 +90,7 @@ async function getReservationById(id: number) :Promise<ReservationType> {
   return fetch(API_URL + "/reservations/" + id, options).then(handleHttpErrors);
 }
 
-async function updateReservation(reservation: ReservationType) {
+async function updateReservation(reservation: {reservationDateTime: String, id: number, bookingType: string, peopleAmount: number, childFriendly: boolean, reservationLengthMinutes: number}) {
   const token = localStorage.getItem("token");
   const headers = {
     Authorization: `Bearer ${token}`,
