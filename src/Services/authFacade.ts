@@ -55,7 +55,7 @@ const authProvider = {
     const res = await fetch(CREATE_URL, options);
     return handleHttpErrors(res);
   },
-  async adminCreate(user_: User): Promise<CreateRequest> {
+  async adminCreate(user_: User): Promise<User> {
     const options = makeOptions("POST", user_);
     const CREATE_URL = API_URL + "/users/add";
     const res = await fetch(CREATE_URL, options);
