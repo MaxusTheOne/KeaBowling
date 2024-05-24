@@ -1,5 +1,5 @@
 import { Equipment, EquipmentDTO } from "../Types";
-import { Reservation, ReservationType } from "../Types";
+import { ReservationType } from "../Types";
 import { API_URL } from "../settings";
 import { User, UserToUpdate } from "./authFacade";
 import { makeOptions, handleHttpErrors } from "./fetchUtils";
