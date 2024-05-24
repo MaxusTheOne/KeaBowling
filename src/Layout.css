@@ -18,8 +18,12 @@ main {
   background-color: #1f1f1f;
   border-radius: 10px;
   border: 2px solid rgb(110, 110, 110);
-  overflow: scroll;
+  overflow: auto;
   padding: 20px 70px;
+}
+
+.page-conten {
+  overflow: hidden;
 }
 
 .hidden-background {
