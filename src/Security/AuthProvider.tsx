@@ -11,6 +11,8 @@ interface AuthContextType {
   isLoggedIn: () => boolean;
   isLoggedInAs: (role: string[]) => boolean;
   createWithRoles: (user: User) => Promise<User>;
+  confirmPassword: (password: string) => boolean;
+  email: (email: string) => boolean;
   roles: string[];
 }
 
@@ -66,6 +68,14 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
     return roles?.some((r) => role.includes(r)) || false;
   }
 
+  const email = (email: string) => {
+    return email ? true : false;
+  };
+
+  const confirmPassword = (password: string) => {
+    return password ? true : false;
+  };
+
   const value = {
     username,
     isLoggedIn,
@@ -74,6 +84,8 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
     signOut,
     create,
     createWithRoles,
+    email,
+    confirmPassword,
     roles: [],
   };
 

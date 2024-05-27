@@ -3,12 +3,13 @@
   grid-template-columns: 1fr 1fr;
   justify-content: center;
   align-items: stretch; /* Make grid items fill the grid container */
-  width: 100%;
+  width: 99%;
   margin: auto auto 0 auto;
   height: calc(
     100vh - 20vh
   ); /* Subtract the padding-top from the viewport height */
-  overflow: scroll;
+  overflow: auto;
+  width: 95%;
 }
 
 #text-holder {

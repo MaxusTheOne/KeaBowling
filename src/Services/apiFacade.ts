@@ -1,10 +1,8 @@
 import { Equipment, EquipmentDTO } from "../Types";
-import { Reservation, ReservationType } from "../Types";
+import { ReservationType } from "../Types";
 import { API_URL } from "../settings";
 import { User, UserToUpdate } from "./authFacade";
 import { makeOptions, handleHttpErrors } from "./fetchUtils";
-
-
 
 async function getUsers() {
   const token = localStorage.getItem("token");
@@ -69,19 +67,20 @@ async function createUser(user: User) {
 
 async function getReservations(): Promise<ReservationType[]> {
   console.log("getReservations");
-  
+
   const token = localStorage.getItem("token");
   const headers = {
     Authorization: `Bearer ${token}`,
   };
   const options = makeOptions("GET", null, headers, true);
-  const results = fetch(API_URL + "/reservations", options).then(handleHttpErrors);
+  const results = fetch(API_URL + "/reservations", options).then(
+    handleHttpErrors
+  );
   console.log("results", results);
   return results;
-  
 }
 
-async function getReservationById(id: number) :Promise<ReservationType> {
+async function getReservationById(id: number): Promise<ReservationType> {
   const token = localStorage.getItem("token");
   const headers = {
     Authorization: `Bearer ${token}`,
@@ -90,14 +89,22 @@ async function getReservationById(id: number) :Promise<ReservationType> {
   return fetch(API_URL + "/reservations/" + id, options).then(handleHttpErrors);
 }
 
-async function updateReservation(reservation: ReservationType) {
+async function updateReservation(reservation: {
+  reservationDateTime: String;
+  id: number;
+  bookingType: string;
+  peopleAmount: number;
+  childFriendly: boolean;
+  reservationLengthMinutes: number;
+}) {
   const token = localStorage.getItem("token");
   const headers = {
     Authorization: `Bearer ${token}`,
   };
   const options = makeOptions("PUT", reservation, headers, true);
-  return fetch(API_URL + "/reservations/" + reservation.id, options).then(handleHttpErrors);
-
+  return fetch(API_URL + "/reservations/" + reservation.id, options).then(
+    handleHttpErrors
+  );
 }
 
 async function getUserReservations() {
@@ -139,7 +146,6 @@ async function getShowing(id: number) {
     console.error("Error fetching showing:", error);
   }
 }
-
 
 // eslint-disable-next-line react-refresh/only-export-components
 export {
