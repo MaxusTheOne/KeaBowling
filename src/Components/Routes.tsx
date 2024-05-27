@@ -8,7 +8,7 @@ import LandingPage from "./Pages/LandingPage/LandingPage";
 import Login from "../Security/Login";
 import CreateAccountPage from "./Pages/SignIn/CreateAccountPage";
 import RequireAuth from "../Security/RequireAuth";
-import BeveragesPage from "./Pages/Beverages/BeveragesPage";
+import PurchasePage from "./Pages/Beverages/PurchasePage";
 import PageNotFound from "./Pages/PageNotFound/PageNotFound";
 import UsersPageAdd from "./Pages/Users/UsersPageAdd";
 import MyPageCalendar from "./Pages/MyPage/MyPageCalendar/MyPageCalendar";
@@ -35,15 +35,15 @@ const AppRoutes = [
     path: "/reservations/:id",
     Element: () => (
       <RequireAuth roles={["ADMIN", "STAFF"]}>
-        <ReservationsDetailPage/>
+        <ReservationsDetailPage />
       </RequireAuth>
     ),
   },
   {
-    path: "/beverages",
+    path: "/sell",
     Element: () => (
       <RequireAuth roles={["ADMIN", "STAFF"]}>
-        <BeveragesPage />
+        <PurchasePage />
       </RequireAuth>
     ),
   },

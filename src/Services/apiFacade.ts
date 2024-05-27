@@ -90,7 +90,7 @@ async function getReservationById(id: number): Promise<ReservationType> {
 }
 
 async function updateReservation(reservation: {
-  reservationDateTime: String;
+  reservationDateTime: string;
   id: number;
   bookingType: string;
   peopleAmount: number;
@@ -147,6 +147,16 @@ async function getShowing(id: number) {
   }
 }
 
+async function getProducts() {
+  try {
+    const response = await fetch(`${API_URL}/products`);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching products:", error);
+  }
+}
+
 // eslint-disable-next-line react-refresh/only-export-components
 export {
   deleteUser,
@@ -161,4 +171,5 @@ export {
   updateReservation,
   getReservations,
   postEquipment,
+  getProducts,
 };
