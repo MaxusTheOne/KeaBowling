@@ -40,12 +40,6 @@ export default function ReservationsPage() {
             searchByValue: true,
           },
           {
-            header: "Name",
-            accessorKey: "name",
-            type: "string",
-            searchByValue: true,
-          },
-          {
             header: "Email",
             accessorKey: "email",
             type: "string",

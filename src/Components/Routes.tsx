@@ -8,7 +8,7 @@ import LandingPage from "./Pages/LandingPage/LandingPage";
 import Login from "../Security/Login";
 import CreateAccountPage from "./Pages/SignIn/CreateAccountPage";
 import RequireAuth from "../Security/RequireAuth";
-import PurchasePage from "./Pages/Beverages/PurchasePage";
+import PurchasePage from "./Pages/PurchasePage/PurchasePage";
 import PageNotFound from "./Pages/PageNotFound/PageNotFound";
 import UsersPageAdd from "./Pages/Users/UsersPageAdd";
 import MyPageCalendar from "./Pages/MyPage/MyPageCalendar/MyPageCalendar";

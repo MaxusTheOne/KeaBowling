@@ -46,7 +46,7 @@ export const SidebarData = [
     route: "/users",
   },
   {
-    title: "Sell Beverages",
+    title: "Sell Amenities",
     role: ["ADMIN", "STAFF"],
     icon: <InventoryIcon />,
     route: "/sell",
