@@ -71,13 +71,12 @@ async function deleteUser(id: number) {
 }
 
 async function updateUser(user: UserToUpdate) {
-  console.log("updateUser", user);
-  
   const token = localStorage.getItem("token");
   const headers = {
     Authorization: `Bearer ${token}`,
   };
   const options = makeOptions("PUT", user, headers, true);
+  
   return fetch(
     API_URL + "/users/" + user.username,
     options
@@ -136,8 +135,11 @@ async function updateReservation(reservation: {
   const token = localStorage.getItem("token");
   const headers = {
     Authorization: `Bearer ${token}`,
+    contentType: "application/json",
   };
   const options = makeOptions("PUT", reservation, headers, true);
+  console.log("updateReservation", options);
+  
   return fetch(API_URL + "/reservations/" + reservation.id, options).then(
     handleHttpErrors
   );

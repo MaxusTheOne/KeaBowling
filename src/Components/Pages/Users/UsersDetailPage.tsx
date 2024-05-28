@@ -8,7 +8,6 @@ interface UserToUpdate {
     email: string;
     roles: string;
     username: string;
-    password: string;
     created: Date;
 }
 
@@ -20,7 +19,6 @@ export default function UsersDetailPage() {
         email: "",
         roles: "",
         username: "",
-        password: "",
     });
 
     useEffect(() => {
@@ -29,6 +27,7 @@ export default function UsersDetailPage() {
             setUser({ ...res });
             setFormState({
                 ...res,
+                roles: res.roles.join(" "),
             });
             console.log(res);
         };
