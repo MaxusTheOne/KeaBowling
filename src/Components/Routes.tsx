@@ -14,6 +14,7 @@ import UsersPageAdd from "./Pages/Users/UsersPageAdd";
 import MyPageCalendar from "./Pages/MyPage/MyPageCalendar/MyPageCalendar";
 import EquipmentPageAdd from "./Pages/Equipment/AddEquipment/EquipmentPageAdd";
 import EquipmentDetailPage from "./Pages/Equipment/EquipmentDetailPage";
+import UsersDetailPage from "./Pages/Users/UsersDetailPage";
 
 const AppRoutes = [
   {
@@ -93,6 +94,14 @@ const AppRoutes = [
     Element: () => (
       <RequireAuth roles={["ADMIN"]}>
         <UsersPageAdd />
+      </RequireAuth>
+    ),
+  },
+  {
+   path: "/users/:id",
+    Element: () => (
+      <RequireAuth roles={["ADMIN"]}>
+        <UsersDetailPage />
       </RequireAuth>
     ),
   },

@@ -59,28 +59,37 @@ async function postEquipment(equipment: EquipmentDTO): Promise<Equipment> {
   return fetch(`${API_URL}/equipment`, options).then(handleHttpErrors);
 }
 
-async function deleteUser(username: string) {
+async function deleteUser(id: number) {
   const token = localStorage.getItem("token");
   const headers = {
-    "Content-Type": "application/json",
     Authorization: `Bearer ${token}`,
   };
   const options = makeOptions("DELETE", null, headers, true);
-  return fetch(API_URL + "/api/user-with-role/" + username, options).then(
+  return fetch(API_URL + "/users/" + id, options).then(
     handleHttpErrors
   );
 }
 
 async function updateUser(user: UserToUpdate) {
+  console.log("updateUser", user);
+  
   const token = localStorage.getItem("token");
   const headers = {
     Authorization: `Bearer ${token}`,
   };
   const options = makeOptions("PUT", user, headers, true);
   return fetch(
-    API_URL + "/api/user-with-role/update-user/" + user.username,
+    API_URL + "/users/" + user.username,
     options
   ).then(handleHttpErrors);
+}
+async function getUserById(id: number) {
+  const token = localStorage.getItem("token");
+  const headers = {
+    Authorization: `Bearer ${token}`,
+  };
+  const options = makeOptions("GET", null, headers, true);
+  return fetch(API_URL + "/users/" + id, options).then(handleHttpErrors);
 }
 
 async function createUser(user: User) {
@@ -89,7 +98,7 @@ async function createUser(user: User) {
     Authorization: `Bearer ${token}`,
   };
   const options = makeOptions("POST", user, headers, true);
-  return fetch(API_URL + "/api/user-with-role", options).then(handleHttpErrors);
+  return fetch(API_URL + "/users", options).then(handleHttpErrors);
 }
 
 async function getReservations(): Promise<ReservationType[]> {
@@ -189,6 +198,7 @@ export {
   deleteUser,
   updateUser,
   createUser,
+  getUserById,
   getUserReservations,
   deleteUserReservation,
   getShowing,
