@@ -75,3 +75,9 @@ export interface Schedule {
   start: Date;
   end: Date;
 }
+
+export interface ScheduleDTO {
+  username: string;
+  start: Date;
+  end: Date;
+}

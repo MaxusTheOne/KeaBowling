@@ -1,4 +1,4 @@
-import { Equipment, EquipmentDTO } from "../Types";
+import { Equipment, EquipmentDTO, ScheduleDTO } from "../Types";
 import { ReservationType } from "../Types";
 import { API_URL } from "../settings";
 import { User, UserToUpdate } from "./authFacade";
@@ -159,6 +159,44 @@ async function getSchedules() {
   return res;
 }
 
+async function createSchedule(schedule: ScheduleDTO) {
+  const token = localStorage.getItem("token");
+  const headers = {
+    Authorization: `Bearer ${token}`,
+  };
+  const options = makeOptions("POST", schedule, headers, true);
+  return fetch(API_URL + "/schedule", options).then(handleHttpErrors);
+}
+
+async function getStaff() {
+  try {
+    const response = await fetch(`${API_URL}/users/role/STAFF`);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching products:", error);
+  }
+}
+
+async function getAllStaff() {
+  async function fetchData(role: string) {
+    const response = await fetch(`${API_URL}/users/role/${role}`);
+    return response.json();
+  }
+
+  try {
+    const roles = ["STAFF", "RESERVATION_STAFF", "EQUIPMENT_OPERATOR", "ADMIN"];
+    const data = await Promise.all(roles.map(fetchData));
+
+    // Flatten the array and remove duplicates
+    const uniqueData = [...new Set(data.flat())];
+
+    return uniqueData;
+  } catch (error) {
+    console.error("Error fetching staff:", error);
+  }
+}
+
 // eslint-disable-next-line react-refresh/only-export-components
 export {
   deleteUser,
@@ -174,4 +212,7 @@ export {
   postEquipment,
   getProducts,
   getSchedules,
+  getStaff,
+  getAllStaff,
+  createSchedule,
 };

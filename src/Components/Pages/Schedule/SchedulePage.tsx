@@ -31,24 +31,6 @@ export default function SchedulePage() {
       })
       .catch((err) => console.error(err));
   }, []);
-
-  // const mockData = [
-  //   {
-  //     username: "user1",
-  //     start: new Date("2024-05-28T12:30:00"),
-  //     end: new Date("2024-05-28T14:00:00"),
-  //   },
-  //   {
-  //     username: "user1",
-  //     start: new Date("2024-05-29T12:30:00"),
-  //     end: new Date("2024-05-29T18:00:00"),
-  //   },
-  //   {
-  //     username: "user2",
-  //     start: new Date("2024-05-27T14:30:00"),
-  //     end: new Date("2024-05-27T16:00:00"),
-  //   },
-  // ];
   // Create events from data.
   const events = schedules.map((data) => ({
     start: data.start,

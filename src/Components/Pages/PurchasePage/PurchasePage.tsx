@@ -98,7 +98,7 @@ export default function PurchasePage() {
 
   const renderReceiptItem = (product: ProductWithQuantity) => (
     <div
-      key={product.id}
+      key={product.id + "-" + product.quantity}
       className="receipt-item"
       onClick={() => removeFromReceipt(product.id)}
     >
