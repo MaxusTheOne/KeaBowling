@@ -1,36 +1,56 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./SchedulePage.css";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
+import { useNavigate } from "react-router-dom";
 
 import { useAuth } from "../../../Security/AuthProvider";
+import { getSchedules } from "../../../Services/apiFacade";
+import { Schedule } from "../../../Types";
 
 export default function SchedulePage() {
+  // Constants
+  const navigate = useNavigate();
+  const [schedules, setSchedules] = useState<Schedule[]>([]);
   const localizer = momentLocalizer(moment);
   const [selectedUser, setSelectedUser] = useState("all");
-  const handleUserChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedUser(event.target.value);
-  };
-  const mockData = [
-    {
-      username: "user1",
-      start: new Date("2024-05-28T12:30:00"),
-      end: new Date("2024-05-28T14:00:00"),
-    },
-    {
-      username: "user1",
-      start: new Date("2024-05-29T12:30:00"),
-      end: new Date("2024-05-29T18:00:00"),
-    },
-    {
-      username: "user2",
-      start: new Date("2024-05-27T14:30:00"),
-      end: new Date("2024-05-27T16:00:00"),
-    },
-  ];
-  const users = Array.from(new Set(mockData.map((data) => data.username)));
-  const events = mockData.map((data) => ({
+
+  // Data
+  useEffect(() => {
+    getSchedules()
+      .then((data: Schedule[]) => {
+        const fixedDateInData = data.map((schedule) => {
+          return {
+            ...schedule,
+            start: new Date(schedule.start),
+            end: new Date(schedule.end),
+          };
+        });
+        setSchedules(fixedDateInData);
+      })
+      .catch((err) => console.error(err));
+  }, []);
+
+  // const mockData = [
+  //   {
+  //     username: "user1",
+  //     start: new Date("2024-05-28T12:30:00"),
+  //     end: new Date("2024-05-28T14:00:00"),
+  //   },
+  //   {
+  //     username: "user1",
+  //     start: new Date("2024-05-29T12:30:00"),
+  //     end: new Date("2024-05-29T18:00:00"),
+  //   },
+  //   {
+  //     username: "user2",
+  //     start: new Date("2024-05-27T14:30:00"),
+  //     end: new Date("2024-05-27T16:00:00"),
+  //   },
+  // ];
+  // Create events from data.
+  const events = schedules.map((data) => ({
     start: data.start,
     end: data.end,
     title:
@@ -48,6 +68,11 @@ export default function SchedulePage() {
     user: data.username,
   }));
 
+  // Filter events based on selected user.
+  const users = Array.from(new Set(schedules.map((data) => data.username)));
+  const handleUserChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedUser(event.target.value);
+  };
   let filteredEvents = events;
   if (selectedUser !== "all") {
     filteredEvents = events.filter((event) => event.user === selectedUser);
@@ -59,7 +84,12 @@ export default function SchedulePage() {
         <h1>Work Schedule</h1>
         {useAuth().isLoggedInAs(["ADMIN"]) ? (
           <>
-            <button id="add-event-button">Add Schedule</button>
+            <button
+              id="add-event-button"
+              onClick={() => navigate("/schedule/add")}
+            >
+              Add Schedule
+            </button>
             <label htmlFor="user-select">User:</label>
             <select
               id="user-select"

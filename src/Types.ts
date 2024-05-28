@@ -68,3 +68,10 @@ export interface Product {
   stock: number;
   image: string;
 }
+
+export interface Schedule {
+  id: number;
+  username: string;
+  start: Date;
+  end: Date;
+}

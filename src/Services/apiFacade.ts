@@ -137,16 +137,6 @@ async function deleteUserReservation(id: number) {
   return JSON.parse(data);
 }
 
-async function getShowing(id: number) {
-  try {
-    const response = await fetch(`${API_URL}/showings/${id}`);
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error("Error fetching showing:", error);
-  }
-}
-
 async function getProducts() {
   try {
     const response = await fetch(`${API_URL}/products`);
@@ -157,6 +147,18 @@ async function getProducts() {
   }
 }
 
+async function getSchedules() {
+  const token = localStorage.getItem("token");
+  const headers = {
+    Authorization: `Bearer ${token}`,
+  };
+  const options = makeOptions("GET", null, headers, true);
+  const res = await fetch(API_URL + "/schedule", options).then(
+    handleHttpErrors
+  );
+  return res;
+}
+
 // eslint-disable-next-line react-refresh/only-export-components
 export {
   deleteUser,
@@ -164,7 +166,6 @@ export {
   createUser,
   getUserReservations,
   deleteUserReservation,
-  getShowing,
   getUsers,
   getEquipment,
   getReservationById,
@@ -172,4 +173,5 @@ export {
   getReservations,
   postEquipment,
   getProducts,
+  getSchedules,
 };

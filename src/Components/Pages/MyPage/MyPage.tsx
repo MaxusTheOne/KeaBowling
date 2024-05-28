@@ -60,7 +60,7 @@ export default function MyPage() {
 
   return (
     <div id="my-page-container">
-      <h1>User:</h1>
+      <h1>User</h1>
       <p>Logged in as: {localStorage.getItem("username")}</p>
       <p>Role: {rolesString}</p>
       <br />
