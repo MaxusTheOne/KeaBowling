@@ -19,11 +19,38 @@ async function getUsers() {
 async function getEquipment() {
   const token = localStorage.getItem("token");
   const headers = {
-    "Content-Type": "application/json",
     Authorization: `Bearer ${token}`,
   };
   const options = makeOptions("GET", null, headers, true);
   return fetch(API_URL + "/equipment", options).then(handleHttpErrors);
+}
+async function getEquipmentById(id: number) {
+  const token = localStorage.getItem("token");
+  const headers = {
+    Authorization: `Bearer ${token}`,
+  };
+  const options = makeOptions("GET", null, headers, true);
+  return fetch(API_URL + "/equipment/" + id, options).then(handleHttpErrors);
+}
+async function updateEquipment(equipment: Equipment) {
+  console.log("updateEquipment", equipment);
+  const token = localStorage.getItem("token");
+  const headers = {
+    Authorization: `Bearer ${token}`,
+  };
+  const options = makeOptions("PUT", equipment, headers, true);
+  return fetch(API_URL + "/equipment/" + equipment.id, options).then(
+    handleHttpErrors
+  );
+}
+async function deleteEquipment(id: number) {
+  const token = localStorage.getItem("token");
+  const headers = {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${token}`,
+  };
+  const options = makeOptions("DELETE", null, headers, true);
+  return fetch(API_URL + "/equipment/" + id, options).then(handleHttpErrors);
 }
 
 // Create equipment
@@ -166,10 +193,13 @@ export {
   deleteUserReservation,
   getShowing,
   getUsers,
-  getEquipment,
   getReservationById,
   updateReservation,
   getReservations,
+  getEquipment,
+  getEquipmentById,
   postEquipment,
+  updateEquipment,
+  deleteEquipment,
   getProducts,
 };

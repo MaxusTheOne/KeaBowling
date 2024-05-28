@@ -31,7 +31,7 @@ export default function ReservationsDetailPage() {
       });
     };
     fetchReservations();
-  }, []);
+  }, [id]);
 
   const [formState, setFormState] = useState({
     ...reservation,
