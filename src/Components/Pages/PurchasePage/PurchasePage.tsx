@@ -89,7 +89,9 @@ export default function PurchasePage() {
       >
         <img src={product.image} alt={product.name} />
         <div className="product-name">{product.name}</div>
-        <div className="product-price">{product.price} kr./stk</div>
+        <div className="product-price">
+          {product.price.toString().replace(".", ",")}.- kr./stk
+        </div>
       </div>
     );
   };
