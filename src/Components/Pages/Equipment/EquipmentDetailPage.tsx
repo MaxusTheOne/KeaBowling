@@ -64,76 +64,78 @@ export default function EquipmentDetailPage() {
     };
   };
 return (
-    <div>
-        <h1>Equipment Detail Page</h1>
+  <div>
 
-        {/* Form for a Equipment with input */}
-        <form onSubmit={handleSubmit()}>
-            <div>
-                <label>ID:</label>
-                <input
-                    type="text"
-                    name="id"
-                    value={equipment?.id}
-                    onChange={handleChange}
-                    readOnly
-                    required
-                />
-            </div>
-            <div>
-                <label>Name:</label>
-                <input
-                    type="text"
-                    name="name"
-                    value={equipment?.name}
-                    onChange={handleChange}
-                    readOnly
-                    required
-                />
-            </div>
-            <div>
-                <label>Description:</label>
-                <input
-                    type="text"
-                    name="description"
-                    value={formState?.description}
-                    onChange={handleChange}
-                    required
-                />
-            </div>
-            <div>
-                <label>Brand:</label>
-                <input
-                    type="text"
-                    name="brand"
-                    value={formState?.brand}
-                    onChange={handleChange}
-                    required
-                />
-            </div>
-            <div>
-                <label>Type:</label>
-                <input
-                    type="text"
-                    name="type"
-                    value={formState?.type}
-                    onChange={handleChange}
-                    required
-                />
-            </div>
-            <div>
-                <label>Stock Amount:</label>
-                <input
-                    type="text"
-                    name="stockAmount"
-                    value={formState?.stockAmount}
-                    onChange={handleChange}
-                    required
-                />
-            </div>
-            <button onClick={handleDelete()}>Delete</button>
-            <button>Save</button>
-        </form>
-    </div>
+    {/* Form for a Equipment with input */}
+    <form onSubmit={handleSubmit()} id="equipment-form-container" className="form-container">
+    <h1>Equipment Detail Page</h1>
+      <label className="form-label">ID:</label>
+      <input
+        type="text"
+        name="id"
+        value={equipment?.id}
+        onChange={handleChange}
+        readOnly
+        required
+        className="form-input"
+      />
+
+      <label className="form-label">Name:</label>
+      <input
+        type="text"
+        name="name"
+        value={equipment?.name}
+        onChange={handleChange}
+        readOnly
+        required
+        className="form-input"
+      />
+
+      <label className="form-label">Description:</label>
+      <input
+        type="text"
+        name="description"
+        value={formState?.description}
+        onChange={handleChange}
+        required
+        className="form-input"
+      />
+
+      <label className="form-label">Brand:</label>
+      <input
+        type="text"
+        name="brand"
+        value={formState?.brand}
+        onChange={handleChange}
+        required
+        className="form-input"
+      />
+
+      <label className="form-label">Type:</label>
+      <input
+        type="text"
+        name="type"
+        value={formState?.type}
+        onChange={handleChange}
+        required
+        className="form-input"
+      />
+
+      <label className="form-label">Stock Amount:</label>
+      <input
+        type="text"
+        name="stockAmount"
+        value={formState?.stockAmount}
+        onChange={handleChange}
+        required
+        className="form-input"
+      />
+
+      <div className="choice-container">
+        <button onClick={handleDelete()} className="delete-button">Delete</button>
+        <button className="save-button">Save</button>
+      </div>
+    </form>
+  </div>
 );
 }
