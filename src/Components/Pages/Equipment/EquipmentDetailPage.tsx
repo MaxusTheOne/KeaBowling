@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { deleteEquipment, getEquipmentById, updateEquipment } from "../../../Services/apiFacade";
 import type { Equipment } from "../../../Types";
 
 export default function EquipmentDetailPage() {
      const { id } = useParams<{ id: string }>();
+     const navigate = useNavigate();
   const [equipment, setEquipment] = useState<Equipment>({
     id: 0,
     name: "",
@@ -53,15 +54,17 @@ export default function EquipmentDetailPage() {
                 return;
             }
             updateEquipment(formState);
+            navigate("/equipment");
+          }
         }
-}
-  const handleDelete = () => {
-    return () => {
-      if (!equipment) {
-        return;
-      }
-      deleteEquipment(equipment.id);
-    };
+        const handleDelete = () => {
+          return () => {
+            if (!equipment) {
+              return;
+            }
+            deleteEquipment(equipment.id);
+            navigate("/equipment");
+          };
   };
 return (
   <div>

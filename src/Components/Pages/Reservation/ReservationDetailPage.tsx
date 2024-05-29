@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import type { ReservationType } from "../../../Types";
 import {
@@ -10,6 +10,7 @@ import moment from "moment";
 
 export default function ReservationsDetailPage() {
   const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
   const [reservation, setReservation] = useState<ReservationType>({
     id: 0,
     userId: 0,
@@ -88,7 +89,7 @@ export default function ReservationsDetailPage() {
         ...formState,
         reservationDateTime: reservationDateTime,
       });
-      console.log("Form submitted", formState);
+      navigate("/reservations");
     };
   };
   const handleDelete = () => {
@@ -97,6 +98,7 @@ export default function ReservationsDetailPage() {
         return;
       }
       deleteUserReservation(reservation.id);
+      navigate("/reservations");
     };
   };
   return (

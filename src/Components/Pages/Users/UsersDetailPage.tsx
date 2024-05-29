@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { deleteUser, getUserById, updateUser } from "../../../Services/apiFacade";
 import "./UserDetailPage.css";
 
@@ -14,6 +14,7 @@ interface UserToUpdate {
 
 export default function UsersDetailPage() {
     const { id } = useParams<{ id: string }>();
+    const navigate = useNavigate();
     const [user, setUser] = useState<UserToUpdate>({
         id: 0,
         created: new Date(),
@@ -62,6 +63,7 @@ export default function UsersDetailPage() {
             return;
         }
         updateUser({...formState, roles: formState.roles.split(" ")});
+        navigate("/users");
     };
 
     const handleDelete = () => {
@@ -69,6 +71,7 @@ export default function UsersDetailPage() {
             return;
         }
         deleteUser(user.id);
+        navigate("/users");
     };
 
     return (

@@ -71,6 +71,8 @@ async function deleteUser(id: number) {
 }
 
 async function updateUser(user: UserToUpdate) {
+  console.log("UserToUpdate",user);
+  
   const token = localStorage.getItem("token");
   const headers = {
     Authorization: `Bearer ${token}`,
