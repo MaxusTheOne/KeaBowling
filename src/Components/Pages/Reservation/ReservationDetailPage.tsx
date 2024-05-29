@@ -32,7 +32,6 @@ export default function ReservationsDetailPage() {
     };
     fetchReservations();
   }, [id]);
-
   const [formState, setFormState] = useState({
     ...reservation,
     reservationDateTime:
@@ -40,7 +39,7 @@ export default function ReservationsDetailPage() {
   });
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
+    const { name, value, type, checked } = event.target;
     if (!reservation) {
       return;
     }
@@ -61,6 +60,11 @@ export default function ReservationsDetailPage() {
         return {
           ...defaultState,
           [name]: value,
+        };
+      } else if (type === "checkbox" && name === "childFriendly") {
+        return {
+          ...defaultState,
+          [name]: checked,
         };
       } else {
         return {
@@ -97,84 +101,89 @@ export default function ReservationsDetailPage() {
   };
   return (
     <div>
-      <h1>Reservation Detail Page</h1>
 
       {/* Form for a reservation with input */}
-      <form onSubmit={handleSubmit()}>
-        <div>
-          <label>User ID:</label>
-          <input
-            type="text"
-            name="userId"
-            value={reservation?.userId}
-            onChange={handleChange}
-            readOnly
-            required
-          />
+      <form onSubmit={handleSubmit()} id="reservation-form-container" className="form-container">
+        <h1>Reservation Detail Page</h1>
+
+        <label className="form-label">User ID:</label>
+        <input
+          type="text"
+          name="userId"
+          value={reservation?.userId}
+          onChange={handleChange}
+          readOnly
+          required
+          className="form-input"
+        />
+
+        <label className="form-label">User Mail:</label>
+        <input
+          type="text"
+          name="userMail"
+          value={reservation?.userMail}
+          onChange={handleChange}
+          readOnly
+          required
+          className="form-input"
+        />
+
+        <label className="form-label">Booking Type:</label>
+        <input
+          type="text"
+          name="bookingType"
+          value={formState?.bookingType}
+          onChange={handleChange}
+          required
+          className="form-input"
+        />
+
+        <label className="form-label">People Amount:</label>
+        <input
+          type="text"
+          name="peopleAmount"
+          value={formState?.peopleAmount}
+          onChange={handleChange}
+          required
+          className="form-input"
+        />
+
+        <label className="form-label">Reservation Date Time:</label>
+        <input
+          type="datetime-local"
+          name="reservationDateTime"
+          value={formState?.reservationDateTime.toString()}
+          onChange={handleChange}
+          required
+          className="form-input"
+        />
+
+        <label className="form-label">Reservation Length Minutes:</label>
+        <input
+          type="text"
+          name="reservationLengthMinutes"
+          value={formState?.reservationLengthMinutes}
+          onChange={handleChange}
+          required
+          className="form-input"
+        />
+        <div className="choice-container">
+
+        <label className="form-label">Child Friendly:</label>
+        <input
+          type="checkbox"
+          name="childFriendly"
+          checked={formState?.childFriendly}
+          onChange={handleChange}
+          required
+          className="form-input"
+        />
         </div>
-        <div>
-          <label>User Mail:</label>
-          <input
-            type="text"
-            name="userMail"
-            value={reservation?.userMail}
-            onChange={handleChange}
-            readOnly
-            required
-          />
+    
+        <div className="choice-container">
+          <button onClick={handleDelete()} className="delete-button">Delete</button>
+          <button className="save-button">Save</button>
         </div>
-        <div>
-          <label>Booking Type:</label>
-          <input
-            type="text"
-            name="bookingType"
-            value={formState?.bookingType}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label>People Amount:</label>
-          <input
-            type="text"
-            name="peopleAmount"
-            value={formState?.peopleAmount}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label>Reservation Date Time:</label>
-          <input
-            type="datetime-local"
-            name="reservationDateTime"
-            value={formState?.reservationDateTime.toString()}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label>Reservation Length Minutes:</label>
-          <input
-            type="text"
-            name="reservationLengthMinutes"
-            value={formState?.reservationLengthMinutes}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label>Child Friendly:</label>
-          <input
-            type="checkbox"
-            name="childFriendly"
-            checked={formState?.childFriendly}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <button onClick={handleDelete()}>Delete</button>
-        <button>Save</button>
       </form>
     </div>
   );
