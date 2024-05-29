@@ -185,6 +185,37 @@ async function getProducts() {
   }
 }
 
+async function getProductById(id: number) {
+    const token = localStorage.getItem("token");
+  const headers = {
+    Authorization: `Bearer ${token}`,
+  };
+  const options = makeOptions("GET", null, headers, true);
+  return fetch(API_URL + "/products/" + id, options).then(handleHttpErrors);
+}
+
+async function updateProduct(product: Product) {
+  console.log("updateProduct", product);
+  const token = localStorage.getItem("token");
+  const headers = {
+    Authorization: `Bearer ${token}`,
+  };
+  const options = makeOptions("PUT", product, headers, true);
+  return fetch(API_URL + "/products/" + product.id, options).then(
+    handleHttpErrors
+  );
+}
+
+async function deleteProduct(id: number) {
+  const token = localStorage.getItem("token");
+  const headers = {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${token}`,
+  };
+  const options = makeOptions("DELETE", null, headers, true);
+  return fetch(API_URL + "/products/" + id, options).then(handleHttpErrors);
+}
+
 async function getSchedules() {
   const token = localStorage.getItem("token");
   const headers = {
@@ -258,6 +289,9 @@ export {
   updateEquipment,
   deleteEquipment,
   getProducts,
+  getProductById,
+  updateProduct,
+  deleteProduct,
   getSchedules,
   getStaff,
   getAllStaff,
