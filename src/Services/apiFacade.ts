@@ -1,10 +1,8 @@
-import { Equipment, EquipmentDTO } from "../Types";
-import { Reservation, ReservationType } from "../Types";
+import { Equipment, EquipmentDTO, ScheduleDTO } from "../Types";
+import { ReservationType } from "../Types";
 import { API_URL } from "../settings";
 import { User, UserToUpdate } from "./authFacade";
 import { makeOptions, handleHttpErrors } from "./fetchUtils";
-
-
 
 async function getUsers() {
   const token = localStorage.getItem("token");
@@ -21,11 +19,38 @@ async function getUsers() {
 async function getEquipment() {
   const token = localStorage.getItem("token");
   const headers = {
-    "Content-Type": "application/json",
     Authorization: `Bearer ${token}`,
   };
   const options = makeOptions("GET", null, headers, true);
   return fetch(API_URL + "/equipment", options).then(handleHttpErrors);
+}
+async function getEquipmentById(id: number) {
+  const token = localStorage.getItem("token");
+  const headers = {
+    Authorization: `Bearer ${token}`,
+  };
+  const options = makeOptions("GET", null, headers, true);
+  return fetch(API_URL + "/equipment/" + id, options).then(handleHttpErrors);
+}
+async function updateEquipment(equipment: Equipment) {
+  console.log("updateEquipment", equipment);
+  const token = localStorage.getItem("token");
+  const headers = {
+    Authorization: `Bearer ${token}`,
+  };
+  const options = makeOptions("PUT", equipment, headers, true);
+  return fetch(API_URL + "/equipment/" + equipment.id, options).then(
+    handleHttpErrors
+  );
+}
+async function deleteEquipment(id: number) {
+  const token = localStorage.getItem("token");
+  const headers = {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${token}`,
+  };
+  const options = makeOptions("DELETE", null, headers, true);
+  return fetch(API_URL + "/equipment/" + id, options).then(handleHttpErrors);
 }
 
 // Create equipment
@@ -34,14 +59,13 @@ async function postEquipment(equipment: EquipmentDTO): Promise<Equipment> {
   return fetch(`${API_URL}/equipment`, options).then(handleHttpErrors);
 }
 
-async function deleteUser(username: string) {
+async function deleteUser(id: number) {
   const token = localStorage.getItem("token");
   const headers = {
-    "Content-Type": "application/json",
     Authorization: `Bearer ${token}`,
   };
   const options = makeOptions("DELETE", null, headers, true);
-  return fetch(API_URL + "/api/user-with-role/" + username, options).then(
+  return fetch(API_URL + "/users/" + id, options).then(
     handleHttpErrors
   );
 }
@@ -52,10 +76,19 @@ async function updateUser(user: UserToUpdate) {
     Authorization: `Bearer ${token}`,
   };
   const options = makeOptions("PUT", user, headers, true);
+  
   return fetch(
-    API_URL + "/api/user-with-role/update-user/" + user.username,
+    API_URL + "/users/" + user.username,
     options
   ).then(handleHttpErrors);
+}
+async function getUserById(id: number) {
+  const token = localStorage.getItem("token");
+  const headers = {
+    Authorization: `Bearer ${token}`,
+  };
+  const options = makeOptions("GET", null, headers, true);
+  return fetch(API_URL + "/users/" + id, options).then(handleHttpErrors);
 }
 
 async function createUser(user: User) {
@@ -64,24 +97,25 @@ async function createUser(user: User) {
     Authorization: `Bearer ${token}`,
   };
   const options = makeOptions("POST", user, headers, true);
-  return fetch(API_URL + "/api/user-with-role", options).then(handleHttpErrors);
+  return fetch(API_URL + "/users", options).then(handleHttpErrors);
 }
 
 async function getReservations(): Promise<ReservationType[]> {
   console.log("getReservations");
-  
+
   const token = localStorage.getItem("token");
   const headers = {
     Authorization: `Bearer ${token}`,
   };
   const options = makeOptions("GET", null, headers, true);
-  const results = fetch(API_URL + "/reservations", options).then(handleHttpErrors);
+  const results = fetch(API_URL + "/reservations", options).then(
+    handleHttpErrors
+  );
   console.log("results", results);
   return results;
-  
 }
 
-async function getReservationById(id: number) :Promise<ReservationType> {
+async function getReservationById(id: number): Promise<ReservationType> {
   const token = localStorage.getItem("token");
   const headers = {
     Authorization: `Bearer ${token}`,
@@ -90,14 +124,25 @@ async function getReservationById(id: number) :Promise<ReservationType> {
   return fetch(API_URL + "/reservations/" + id, options).then(handleHttpErrors);
 }
 
-async function updateReservation(reservation: {reservationDateTime: String, id: number, bookingType: string, peopleAmount: number, childFriendly: boolean, reservationLengthMinutes: number}) {
+async function updateReservation(reservation: {
+  reservationDateTime: string;
+  id: number;
+  bookingType: string;
+  peopleAmount: number;
+  childFriendly: boolean;
+  reservationLengthMinutes: number;
+}) {
   const token = localStorage.getItem("token");
   const headers = {
     Authorization: `Bearer ${token}`,
+    contentType: "application/json",
   };
   const options = makeOptions("PUT", reservation, headers, true);
-  return fetch(API_URL + "/reservations/" + reservation.id, options).then(handleHttpErrors);
-
+  console.log("updateReservation", options);
+  
+  return fetch(API_URL + "/reservations/" + reservation.id, options).then(
+    handleHttpErrors
+  );
 }
 
 async function getUserReservations() {
@@ -130,29 +175,86 @@ async function deleteUserReservation(id: number) {
   return JSON.parse(data);
 }
 
-async function getShowing(id: number) {
+async function getProducts() {
   try {
-    const response = await fetch(`${API_URL}/showings/${id}`);
+    const response = await fetch(`${API_URL}/products`);
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error("Error fetching showing:", error);
+    console.error("Error fetching products:", error);
   }
 }
 
+async function getSchedules() {
+  const token = localStorage.getItem("token");
+  const headers = {
+    Authorization: `Bearer ${token}`,
+  };
+  const options = makeOptions("GET", null, headers, true);
+  const res = await fetch(API_URL + "/schedule", options).then(
+    handleHttpErrors
+  );
+  return res;
+}
+
+async function createSchedule(schedule: ScheduleDTO) {
+  const token = localStorage.getItem("token");
+  const headers = {
+    Authorization: `Bearer ${token}`,
+  };
+  const options = makeOptions("POST", schedule, headers, true);
+  return fetch(API_URL + "/schedule", options).then(handleHttpErrors);
+}
+
+async function getStaff() {
+  try {
+    const response = await fetch(`${API_URL}/users/role/STAFF`);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching products:", error);
+  }
+}
+
+async function getAllStaff() {
+  async function fetchData(role: string) {
+    const response = await fetch(`${API_URL}/users/role/${role}`);
+    return response.json();
+  }
+
+  try {
+    const roles = ["STAFF", "RESERVATION_STAFF", "EQUIPMENT_OPERATOR", "ADMIN"];
+    const data = await Promise.all(roles.map(fetchData));
+
+    // Flatten the array and remove duplicates
+    const uniqueData = [...new Set(data.flat())];
+
+    return uniqueData;
+  } catch (error) {
+    console.error("Error fetching staff:", error);
+  }
+}
 
 // eslint-disable-next-line react-refresh/only-export-components
 export {
   deleteUser,
   updateUser,
   createUser,
+  getUserById,
   getUserReservations,
   deleteUserReservation,
-  getShowing,
   getUsers,
-  getEquipment,
   getReservationById,
   updateReservation,
   getReservations,
+  getEquipment,
+  getEquipmentById,
   postEquipment,
+  updateEquipment,
+  deleteEquipment,
+  getProducts,
+  getSchedules,
+  getStaff,
+  getAllStaff,
+  createSchedule,
 };

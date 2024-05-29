@@ -10,7 +10,6 @@
   ); /* Subtract the padding-top from the viewport height */
   overflow: auto;
   width: 95%;
-  
 }
 
 #text-holder {

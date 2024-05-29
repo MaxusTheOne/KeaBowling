@@ -8,11 +8,14 @@ import LandingPage from "./Pages/LandingPage/LandingPage";
 import Login from "../Security/Login";
 import CreateAccountPage from "./Pages/SignIn/CreateAccountPage";
 import RequireAuth from "../Security/RequireAuth";
-import BeveragesPage from "./Pages/Beverages/BeveragesPage";
+import PurchasePage from "./Pages/PurchasePage/PurchasePage";
 import PageNotFound from "./Pages/PageNotFound/PageNotFound";
 import UsersPageAdd from "./Pages/Users/UsersPageAdd";
 import MyPageCalendar from "./Pages/MyPage/MyPageCalendar/MyPageCalendar";
 import EquipmentPageAdd from "./Pages/Equipment/AddEquipment/EquipmentPageAdd";
+import SchedulePageAdd from "./Pages/Schedule/SchedulePageAdd/SchedulePageAdd";
+import EquipmentDetailPage from "./Pages/Equipment/EquipmentDetailPage";
+import UsersDetailPage from "./Pages/Users/UsersDetailPage";
 
 const AppRoutes = [
   {
@@ -35,15 +38,15 @@ const AppRoutes = [
     path: "/reservations/:id",
     Element: () => (
       <RequireAuth roles={["ADMIN", "STAFF"]}>
-        <ReservationsDetailPage/>
+        <ReservationsDetailPage />
       </RequireAuth>
     ),
   },
   {
-    path: "/beverages",
+    path: "/sell",
     Element: () => (
       <RequireAuth roles={["ADMIN", "STAFF"]}>
-        <BeveragesPage />
+        <PurchasePage />
       </RequireAuth>
     ),
   },
@@ -52,6 +55,14 @@ const AppRoutes = [
     Element: () => (
       <RequireAuth roles={["ADMIN", "STAFF"]}>
         <SchedulePage />
+      </RequireAuth>
+    ),
+  },
+  {
+    path: "/schedule/add",
+    Element: () => (
+      <RequireAuth roles={["ADMIN", "STAFF"]}>
+        <SchedulePageAdd />
       </RequireAuth>
     ),
   },
@@ -72,6 +83,14 @@ const AppRoutes = [
     ),
   },
   {
+    path: "/equipment/:id",
+    Element: () => (
+      <RequireAuth roles={["ADMIN", "EquipmentOperator"]}>
+        <EquipmentDetailPage />
+      </RequireAuth>
+    ),
+  },
+  {
     path: "/users",
     Element: () => (
       <RequireAuth roles={["ADMIN"]}>
@@ -84,6 +103,14 @@ const AppRoutes = [
     Element: () => (
       <RequireAuth roles={["ADMIN"]}>
         <UsersPageAdd />
+      </RequireAuth>
+    ),
+  },
+  {
+   path: "/users/:id",
+    Element: () => (
+      <RequireAuth roles={["ADMIN"]}>
+        <UsersDetailPage />
       </RequireAuth>
     ),
   },

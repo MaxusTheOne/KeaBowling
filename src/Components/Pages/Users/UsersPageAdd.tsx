@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { User } from "../../../Services/authFacade";
 import "./UsersPageAdd.css";
 import { useAuth } from "../../../Security/AuthProvider";
 import { useNavigate } from "react-router-dom";

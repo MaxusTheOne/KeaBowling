@@ -13,6 +13,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     "/new-account",
     "/users/add",
     "/equipment/add",
+    "/schedule/add",
   ];
 
   const useIsBlankBackPage = (BlankBackLocations: string[]) => {

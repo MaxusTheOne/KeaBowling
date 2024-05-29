@@ -1,0 +1,36 @@
+#work-schedule-header {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+#work-schedule-header button {
+  padding: 10px 20px;
+  background-color: gray;
+  color: cyan;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#work-schedule-header button:hover {
+  background-color: #00b3b3;
+}
+
+#work-schedule-header select {
+  color: cyan;
+  padding: 10px;
+  border: none;
+  background-color: gray;
+  border-radius: 0px;
+}
+
+#work-schedule-header option {
+  color: cyan;
+  background-color: gray;
+}
+
+#work-schedule-header select:hover {
+  cursor: pointer;
+}

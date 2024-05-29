@@ -23,7 +23,6 @@ export interface ReservationType {
   reservationDateTime: Date;
   reservationLengthMinutes: number;
   childFriendly: boolean;
-  
 }
 
 export interface User {
@@ -59,4 +58,26 @@ export interface EquipmentDTO {
   brand: string;
   type: string;
   stockAmount: number;
+}
+
+export interface Product {
+  receiptId?: number;
+  id: number;
+  name: string;
+  price: number;
+  stock: number;
+  image: string;
+}
+
+export interface Schedule {
+  id: number;
+  username: string;
+  start: Date;
+  end: Date;
+}
+
+export interface ScheduleDTO {
+  username: string;
+  start: Date;
+  end: Date;
 }
