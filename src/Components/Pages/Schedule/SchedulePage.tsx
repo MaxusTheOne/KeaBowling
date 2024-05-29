@@ -33,6 +33,7 @@ export default function SchedulePage() {
   }, []);
   // Create events from data.
   const events = schedules.map((data) => ({
+    id: data.id,
     start: data.start,
     end: data.end,
     title:
@@ -95,6 +96,7 @@ export default function SchedulePage() {
             events={filteredEvents}
             startAccessor="start"
             endAccessor="end"
+            onSelectEvent={(event) => navigate(`/schedule/${event.id}`)}
           />
         ) : (
           <Calendar

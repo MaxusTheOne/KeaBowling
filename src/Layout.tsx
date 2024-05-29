@@ -15,7 +15,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     "/equipment/add",
     "/schedule/add",
     "/users/",
-    "/equipment/"
+    "/equipment/",
+    "/sell/admin-panel/",
   ];
 
   const useIsBlankBackPage = (BlankBackLocations: string[]) => {

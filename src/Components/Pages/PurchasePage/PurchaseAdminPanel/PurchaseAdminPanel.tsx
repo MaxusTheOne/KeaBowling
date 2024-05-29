@@ -21,7 +21,7 @@ export default function PurchaseAdminPanel() {
 
   return (
     <div id="purchase-admin-panel-container">
-      <h1>Amenities</h1>
+      <h1>Amenities Admin Panel</h1>
       <FullTable
         schema={[
           {

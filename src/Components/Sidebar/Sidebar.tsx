@@ -135,7 +135,6 @@ function Sidebar() {
               </div>
             </NavLink>
           </li>
-          <hr />
 
           {!auth.username ? loginBar : sidebarList}
           {signInAndOutButton}

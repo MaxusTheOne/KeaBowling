@@ -1,4 +1,4 @@
-import { Equipment, EquipmentDTO, ScheduleDTO, Product } from "../Types";
+import { Equipment, EquipmentDTO, Product, ScheduleDTO } from "../Types";
 import { ReservationType } from "../Types";
 import { API_URL } from "../settings";
 import { User, UserToUpdate } from "./authFacade";
@@ -266,6 +266,11 @@ async function getAllStaff() {
   } catch (error) {
     console.error("Error fetching staff:", error);
   }
+}
+
+export async function postProduct(product: Product) {
+  const options = makeOptions("POST", product, undefined, true);
+  return fetch(`${API_URL}/products`, options).then(handleHttpErrors);
 }
 
 // eslint-disable-next-line react-refresh/only-export-components

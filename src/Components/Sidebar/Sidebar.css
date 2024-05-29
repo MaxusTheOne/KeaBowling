@@ -4,7 +4,7 @@
   height: 100vh;
   width: 250px;
   transform: translateY(-10px);
-  background-color: #1f1f1f;
+  background-color: #242424;
   position: sticky;
   top: 0;
   transition: width 0.2s ease-in-out;
@@ -27,6 +27,9 @@
   scale: 1;
   width: fit-content;
   translate: 0px 0px;
+  border-bottom: 2px solid rgb(73, 73, 73);
+  padding-bottom: 20px;
+  max-width: 100%;
 }
 
 #sidebar-logo p {

@@ -18,6 +18,7 @@ import EquipmentDetailPage from "./Pages/Equipment/EquipmentDetailPage";
 import UsersDetailPage from "./Pages/Users/UsersDetailPage";
 import PurchaseAdminPanel from "./Pages/PurchasePage/PurchaseAdminPanel/PurchaseAdminPanel";
 import PurchaseAdminPanelDetails from "./Pages/PurchasePage/PurchaseAdminPanel/PurchaseAdminPanelDetails";
+import PurchaseAdminPanelAdd from "./Pages/PurchasePage/PurchaseAdminPanel/PurchaseAdminPanelAdd/PurchaseAdminPanelAdd";
 
 const AppRoutes = [
   {
@@ -64,7 +65,15 @@ const AppRoutes = [
     path: "/sell/admin-panel/:id",
     Element: () => (
       <RequireAuth roles={["ADMIN"]}>
-        <PurchaseAdminPanelDetails/>
+        <PurchaseAdminPanelDetails />
+      </RequireAuth>
+    ),
+  },
+  {
+    path: "/sell/admin-panel/add",
+    Element: () => (
+      <RequireAuth roles={["ADMIN"]}>
+        <PurchaseAdminPanelAdd />
       </RequireAuth>
     ),
   },
