@@ -22,20 +22,27 @@ export const SidebarData = [
     route: "/my-page",
   },
   {
-    title: "All Reservations",
-    role: ["ADMIN"],
-    icon: <ListAlt />,
-    route: "/reservations",
-  },
-  {
     title: "Work Schedule",
     role: ["ADMIN", "EquipmentOperator", "STAFF"],
     icon: <CalendarMonthIcon />,
     route: "/schedule",
   },
+
+  {
+    title: "Sell Amenities",
+    role: ["ADMIN", "STAFF"],
+    icon: <InventoryIcon />,
+    route: "/sell",
+  },
+  {
+    title: "All Reservations",
+    role: ["ADMIN", "STAFF"],
+    icon: <ListAlt />,
+    route: "/reservations",
+  },
   {
     title: "Equipment",
-    role: ["ADMIN", "EquipmentOperator", "STAFF"],
+    role: ["ADMIN", "EquipmentOperator"],
     icon: <InventoryIcon />,
     route: "/equipment",
   },
@@ -44,11 +51,5 @@ export const SidebarData = [
     role: ["ADMIN"],
     icon: <PeopleAltIcon />,
     route: "/users",
-  },
-  {
-    title: "Sell Amenities",
-    role: ["ADMIN", "STAFF"],
-    icon: <InventoryIcon />,
-    route: "/sell",
   },
 ];

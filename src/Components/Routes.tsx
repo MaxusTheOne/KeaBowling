@@ -13,6 +13,7 @@ import PageNotFound from "./Pages/PageNotFound/PageNotFound";
 import UsersPageAdd from "./Pages/Users/UsersPageAdd";
 import MyPageCalendar from "./Pages/MyPage/MyPageCalendar/MyPageCalendar";
 import EquipmentPageAdd from "./Pages/Equipment/AddEquipment/EquipmentPageAdd";
+import SchedulePageAdd from "./Pages/Schedule/SchedulePageAdd/SchedulePageAdd";
 import EquipmentDetailPage from "./Pages/Equipment/EquipmentDetailPage";
 import UsersDetailPage from "./Pages/Users/UsersDetailPage";
 
@@ -54,6 +55,14 @@ const AppRoutes = [
     Element: () => (
       <RequireAuth roles={["ADMIN", "STAFF"]}>
         <SchedulePage />
+      </RequireAuth>
+    ),
+  },
+  {
+    path: "/schedule/add",
+    Element: () => (
+      <RequireAuth roles={["ADMIN", "STAFF"]}>
+        <SchedulePageAdd />
       </RequireAuth>
     ),
   },
