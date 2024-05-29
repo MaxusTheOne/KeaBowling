@@ -89,9 +89,18 @@ export default function PurchaseAdminPanelAdd() {
           }
           required
         />
-        <button className="form-button" type="submit">
-          Add Product
-        </button>
+        <div className="double-button-holder">
+          <button
+            className="form-button"
+            id="cancel-button"
+            onClick={() => navigate("/sell/admin-panel")}
+          >
+            Cancel
+          </button>
+          <button className="form-button" type="submit">
+            Add Product
+          </button>
+        </div>
         {err && <p className="form-error">{err}</p>}
       </form>
     </div>
