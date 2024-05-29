@@ -179,3 +179,24 @@
   scale: 1.05;
   cursor: pointer;
 }
+
+#admin-panel-button {
+  border-radius: 0px; 
+  border: 1px solid rgba(0, 255, 255, 0.226);
+  padding: 10px;
+  color: white;
+  background-color: rgb(65, 65, 65);
+  position: absolute;
+  right: 50px;
+  top: 50px;
+  font-size: 1em;
+  transition: 0.3s;
+  font-family: Barlow, sans-serif;
+}
+
+#admin-panel-button:hover {
+  background-color: rgb(41, 89, 92);
+  cursor: pointer;
+  border: 1px solid rgba(0, 255, 255, 0.507);
+  box-shadow: 0px 0px 10px 0px rgba(0, 255, 255, 0.548);
+}
