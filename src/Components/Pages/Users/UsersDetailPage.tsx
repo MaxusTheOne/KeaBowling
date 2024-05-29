@@ -7,7 +7,7 @@ import "./UserDetailPage.css";
 interface UserToUpdate {
     id: number;
     email: string;
-    roles: string;
+    roles: string[];
     username: string;
     created: Date;
 }
@@ -19,7 +19,7 @@ export default function UsersDetailPage() {
         id: 0,
         created: new Date(),
         email: "",
-        roles: "",
+        roles: [],
         username: "",
     });
 
@@ -29,7 +29,6 @@ export default function UsersDetailPage() {
             setUser({ ...res });
             setFormState({
                 ...res,
-                roles: res.roles.join(" "),
             });
             console.log(res);
         };
@@ -62,7 +61,7 @@ export default function UsersDetailPage() {
         if (!user) {
             return;
         }
-        updateUser({...formState, roles: formState.roles.split(" ")});
+        updateUser({...formState});
         navigate("/users");
     };
 
@@ -73,6 +72,28 @@ export default function UsersDetailPage() {
         deleteUser(user.id);
         navigate("/users");
     };
+    const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { checked, value } = e.target;
+        setUser((prev) => {
+            if (checked) {
+                // If the checkbox is checked, add its value to the roles array
+                return { ...prev, roles: [...prev.roles, value] };
+            } else {
+                // If the checkbox is unchecked, remove its value from the roles array
+                return { ...prev, roles: prev.roles.filter((role) => role !== value) };
+            }
+        });
+        setFormState((prev) => {
+            if (checked) {
+                // If the checkbox is checked, add its value to the roles array
+                return { ...prev, roles: [...prev.roles, value] };
+            } else {
+                // If the checkbox is unchecked, remove its value from the roles array
+                return { ...prev, roles: prev.roles.filter((role) => role !== value) };
+            }
+        });
+    };
+
 
     return (
         <div className="user-detail-page">
@@ -107,14 +128,7 @@ export default function UsersDetailPage() {
                     onChange={handleChange}
                     required
                 />
-                <label className="form-label">Roles:</label>
-                <input
-                    className="form-input"
-                    type="text"
-                    name="roles"
-                    value={formState?.roles}
-                    onChange={handleChange}
-                />
+                
                 <label className="form-label">Username:</label>
                 <input
                     className="form-input"
@@ -124,6 +138,51 @@ export default function UsersDetailPage() {
                     onChange={handleChange}
                     required
                 />
+                 <label className="label">Roles:</label>
+                <div className="choice-container">
+                <label htmlFor="admin">Admin</label>
+                <input
+                    type="checkbox"
+                    id="admin"
+                    name="roles"
+                    value="ADMIN"
+                    checked={user.roles.includes("ADMIN")}
+                    onChange={handleCheckboxChange}
+                />
+                </div>
+                <div className="choice-container">
+                <label htmlFor="reservationStaff">Reservation Staff</label>
+                <input
+                    type="checkbox"
+                    id="reservationStaff"
+                    name="roles"
+                    value="RESERVATION_STAFF"
+                    checked={user.roles.includes("RESERVATION_STAFF")}
+                    onChange={handleCheckboxChange}
+                />
+                </div>
+                <div className="choice-container">
+                <label htmlFor="equipmentOperator">Equipment Operator</label>
+                <input
+                    type="checkbox"
+                    id="equipmentOperator"
+                    name="roles"
+                    value="EQUIPMENT_OPERATOR"
+                    checked={user.roles.includes("EQUIPMENT_OPERATOR")}
+                    onChange={handleCheckboxChange}
+                />
+                </div>
+                <div className="choice-container">
+                <label htmlFor="shiftManager">Regular Staff</label>
+                <input
+                    type="checkbox"
+                    id="staff"
+                    name="roles"
+                    value="STAFF"
+                    checked={user.roles.includes("STAFF")}
+                    onChange={handleCheckboxChange}
+                />
+                </div>
                 <div className="choice-container">
                     <button className="delete-button" onClick={handleDelete}>Delete</button>
                     <button className="save-button">Save</button>
