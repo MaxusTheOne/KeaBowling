@@ -1,4 +1,9 @@
-import { Equipment, EquipmentDTO, Product, ScheduleDTO, Schedule } from "../Types";
+import {
+  Equipment,
+  EquipmentDTO,
+  Product,
+  ScheduleDTO, Schedule,
+} from "../Types";
 import { ReservationType } from "../Types";
 import { API_URL } from "../settings";
 import { User, UserToUpdate } from "./authFacade";
@@ -24,6 +29,7 @@ async function getEquipment() {
   const options = makeOptions("GET", null, headers, true);
   return fetch(API_URL + "/equipment", options).then(handleHttpErrors);
 }
+
 async function getEquipmentById(id: number) {
   const token = localStorage.getItem("token");
   const headers = {
@@ -32,6 +38,7 @@ async function getEquipmentById(id: number) {
   const options = makeOptions("GET", null, headers, true);
   return fetch(API_URL + "/equipment/" + id, options).then(handleHttpErrors);
 }
+
 async function updateEquipment(equipment: Equipment) {
   console.log("updateEquipment", equipment);
   const token = localStorage.getItem("token");
@@ -43,6 +50,7 @@ async function updateEquipment(equipment: Equipment) {
     handleHttpErrors
   );
 }
+
 async function deleteEquipment(id: number) {
   const token = localStorage.getItem("token");
   const headers = {
@@ -65,24 +73,21 @@ async function deleteUser(id: number) {
     Authorization: `Bearer ${token}`,
   };
   const options = makeOptions("DELETE", null, headers, true);
-  return fetch(API_URL + "/users/" + id, options).then(
-    handleHttpErrors
-  );
+  return fetch(API_URL + "/users/" + id, options).then(handleHttpErrors);
 }
 
 async function updateUser(user: UserToUpdate) {
-  console.log("UserToUpdate",user);
-  
+  console.log("UserToUpdate", user);
+
   const token = localStorage.getItem("token");
   const headers = {
     Authorization: `Bearer ${token}`,
   };
   const options = makeOptions("PUT", user, headers, true);
-  
-  return fetch(
-    API_URL + "/users/" + user.username,
-    options
-  ).then(handleHttpErrors);
+
+  return fetch(API_URL + "/users/" + user.username, options).then(
+    handleHttpErrors
+  );
 }
 async function getUserById(id: number) {
   const token = localStorage.getItem("token");
@@ -141,7 +146,7 @@ async function updateReservation(reservation: {
   };
   const options = makeOptions("PUT", reservation, headers, true);
   console.log("updateReservation", options);
-  
+
   return fetch(API_URL + "/reservations/" + reservation.id, options).then(
     handleHttpErrors
   );
@@ -214,7 +219,7 @@ async function reduceProductStock(productId: number, quantity: number) {
 }
 
 async function getProductById(id: number) {
-    const token = localStorage.getItem("token");
+  const token = localStorage.getItem("token");
   const headers = {
     Authorization: `Bearer ${token}`,
   };
@@ -325,7 +330,7 @@ async function getAllStaff() {
   }
 }
 
-export async function postProduct(product: Product) {
+async function postProduct(product: Product) {
   const options = makeOptions("POST", product, undefined, true);
   return fetch(`${API_URL}/products`, options).then(handleHttpErrors);
 }
@@ -359,4 +364,5 @@ export {
   getAllStaff,
   createSchedule,
   reduceProductStock,
+  postProduct,
 };
