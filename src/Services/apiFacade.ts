@@ -211,6 +211,7 @@ async function reduceProductStock(productId: number, quantity: number) {
   } catch (error) {
     console.error(error);
   }
+}
 
 async function getProductById(id: number) {
     const token = localStorage.getItem("token");
