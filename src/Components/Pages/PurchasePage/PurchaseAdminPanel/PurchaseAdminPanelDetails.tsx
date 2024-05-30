@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { deleteProduct, getProductById, updateProduct } from "../../../../Services/apiFacade";
 import type { Product } from "../../../../Types";
 
 export default function ProductDetailPage() {
     const { id } = useParams<{ id: string }>();
+    const navigate = useNavigate();
     const [product, setProduct] = useState<Product>({
         id: 0,
         name: "",
@@ -51,6 +52,7 @@ export default function ProductDetailPage() {
                 return;
             }
             updateProduct(formState);
+            navigate("/sell");
         };
     };
 
@@ -60,6 +62,7 @@ export default function ProductDetailPage() {
                 return;
             }
             deleteProduct(product.id);
+            navigate("/sell");
         };
     };
 
@@ -75,9 +78,8 @@ export default function ProductDetailPage() {
                 <input
                     type="text"
                     name="name"
-                    value={product?.name}
+                    value={formState?.name}
                     onChange={handleChange}
-                    readOnly
                     required
                     className="form-input"
                 />
