@@ -14,6 +14,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     "/users/add",
     "/equipment/add",
     "/schedule/add",
+    "/users/",
+    "/equipment/",
+    "/sell/admin-panel/",
   ];
 
   const useIsBlankBackPage = (BlankBackLocations: string[]) => {
@@ -21,7 +24,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     const location = useLocation();
 
     useEffect(() => {
-      const isBlankBack = BlankBackLocations.includes(location.pathname);
+      const isBlankBack = BlankBackLocations.some((route) =>
+        location.pathname.startsWith(route)
+      );
       setIsBlankBackPage(isBlankBack);
     }, [BlankBackLocations, location.pathname]);
 

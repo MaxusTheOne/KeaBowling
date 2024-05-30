@@ -43,7 +43,6 @@ export default function ReservationsPage() {
   }, []);
 
   useEffect(() => {
-    console.log(users);
   }, [users]);
 
   return (

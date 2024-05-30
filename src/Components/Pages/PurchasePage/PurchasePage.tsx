@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 import { getProducts, reduceProductStock } from "../../../Services/apiFacade";
 import { Product } from "../../../Types";
+import { useAuth } from "../../../Security/AuthProvider";
 import "./PurchasePage.css";
+import { useNavigate } from "react-router-dom";
 
 export default function PurchasePage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [receipt, setReceipt] = useState<ProductWithQuantity[]>([]);
-
+  const navigate = useNavigate();
   // Define a new type that includes the quantity and total price of a product
   type ProductWithQuantity = Product & { quantity: number; totalPrice: number };
 
@@ -153,7 +155,16 @@ export default function PurchasePage() {
 
   return (
     <div id="beverages-page-container">
+      {useAuth().isLoggedInAs(["ADMIN"]) ? (
+        <button
+          id="admin-panel-button"
+          onClick={() => navigate("/sell/admin-panel")}
+        >
+          Admin Panel
+        </button>
+      ) : null}
       <h1>Sell Amenities</h1>
+
       <div id="purchase-page-container">
         <div id="item-grid-container">
           {Array.isArray(products) ? products.map(renderProduct) : null}

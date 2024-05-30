@@ -14,6 +14,11 @@ import UsersPageAdd from "./Pages/Users/UsersPageAdd";
 import MyPageCalendar from "./Pages/MyPage/MyPageCalendar/MyPageCalendar";
 import EquipmentPageAdd from "./Pages/Equipment/AddEquipment/EquipmentPageAdd";
 import SchedulePageAdd from "./Pages/Schedule/SchedulePageAdd/SchedulePageAdd";
+import EquipmentDetailPage from "./Pages/Equipment/EquipmentDetailPage";
+import UsersDetailPage from "./Pages/Users/UsersDetailPage";
+import PurchaseAdminPanel from "./Pages/PurchasePage/PurchaseAdminPanel/PurchaseAdminPanel";
+import PurchaseAdminPanelDetails from "./Pages/PurchasePage/PurchaseAdminPanel/PurchaseAdminPanelDetails";
+import PurchaseAdminPanelAdd from "./Pages/PurchasePage/PurchaseAdminPanel/PurchaseAdminPanelAdd/PurchaseAdminPanelAdd";
 
 const AppRoutes = [
   {
@@ -45,6 +50,30 @@ const AppRoutes = [
     Element: () => (
       <RequireAuth roles={["ADMIN", "STAFF"]}>
         <PurchasePage />
+      </RequireAuth>
+    ),
+  },
+  {
+    path: "/sell/admin-panel",
+    Element: () => (
+      <RequireAuth roles={["ADMIN"]}>
+        <PurchaseAdminPanel />
+      </RequireAuth>
+    ),
+  },
+  {
+    path: "/sell/admin-panel/:id",
+    Element: () => (
+      <RequireAuth roles={["ADMIN"]}>
+        <PurchaseAdminPanelDetails />
+      </RequireAuth>
+    ),
+  },
+  {
+    path: "/sell/admin-panel/add",
+    Element: () => (
+      <RequireAuth roles={["ADMIN"]}>
+        <PurchaseAdminPanelAdd />
       </RequireAuth>
     ),
   },
@@ -81,6 +110,14 @@ const AppRoutes = [
     ),
   },
   {
+    path: "/equipment/:id",
+    Element: () => (
+      <RequireAuth roles={["ADMIN", "EquipmentOperator"]}>
+        <EquipmentDetailPage />
+      </RequireAuth>
+    ),
+  },
+  {
     path: "/users",
     Element: () => (
       <RequireAuth roles={["ADMIN"]}>
@@ -93,6 +130,14 @@ const AppRoutes = [
     Element: () => (
       <RequireAuth roles={["ADMIN"]}>
         <UsersPageAdd />
+      </RequireAuth>
+    ),
+  },
+  {
+    path: "/users/:id",
+    Element: () => (
+      <RequireAuth roles={["ADMIN"]}>
+        <UsersDetailPage />
       </RequireAuth>
     ),
   },

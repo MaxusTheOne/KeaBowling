@@ -1,11 +1,20 @@
 .schedule-form-field {
-  width: 90%;
+  width: 96%;
   margin-bottom: 10px;
   padding: 10px;
   border-radius: 5px;
   border: none;
   color: rgb(255, 255, 255);
   background-color: rgb(78, 78, 78);
+}
+
+#schedule-form h1 {
+  margin-left: 0;
+  text-align: center;
+}
+
+#schedule-user-select {
+  width: 100%;
 }
 
 #schedule-user-select:hover {
@@ -23,6 +32,6 @@
   margin: auto;
   text-align: left;
   background-color: rgb(46, 46, 46);
-  border: 1px solid rgb(0, 255, 255);
-  box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+  border: 2px solid rgb(94, 94, 94);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.555);
 }

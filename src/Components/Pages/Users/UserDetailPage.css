@@ -1,0 +1,78 @@
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: left;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: none;
+    width: calc(fit-content + 20px);
+    text-align: left;
+}
+
+#user-form-container {
+    text-align: left;
+
+}
+
+#user-form-container label, #equipment-form-container label, #reservation-form-container label,#product-form-container label {
+    width: 100%;
+    margin-left: 40px;
+    margin-top: 10px;
+}
+
+.form-container h1 {
+    margin-bottom: 50px;
+}
+
+.form-group {
+    text-align: left;
+    display: block;
+    width: 100%;
+}
+
+.form-label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-align: left;
+    margin-left: 0px;
+}
+
+.form-input {
+    width: 90%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.delete-button,
+.save-button {
+    margin-top: 50px;
+    margin-right: 5px;
+    width: 45%;
+    padding: 10px;
+    border: none;
+    background-color: #4cacaf;
+    color: white;
+    cursor: pointer;
+}
+
+.delete-button {
+    background-color: #f05d5d;
+}
+
+.delete-button:hover {
+    background-color: #7e2d2d;
+}
+
+.save-button:hover {
+    background-color: #4583a0;
+}
+
+.choice-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    width: 100%;
+}
