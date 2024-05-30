@@ -40,6 +40,7 @@
 }
 
 .grid-item {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -89,6 +90,42 @@
   font-weight: 300;
   color: white;
   text-align: center;
+}
+
+.out-of-stock * {
+  opacity: 0.5; /* This will make the product appear "greyed out" */
+  pointer-events: none; /* This will disable all mouse events including hover */
+}
+
+.out-of-stock img {
+  filter: grayscale(80%); /* This will make the image appear "greyed out" */
+}
+
+/* Disable hover effects for out-of-stock products */
+.grid-item.out-of-stock:hover {
+  background-color: inherit;
+  cursor: no-drop;
+  scale: 1;
+}
+
+.grid-item.out-of-stock:hover .product-name {
+  color: inherit;
+}
+
+.out-of-stock-label {
+  padding: 0px 5px 0px 5px;
+  position: absolute;
+  top: 37%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: red;
+  font-size: 1.5em;
+  font-weight: bold;
+  font-style: italic;
+  background-color: rgb(58, 58, 58);
+  z-index: 1;
+  opacity: 1; /* This will ensure the label is not greyed out */
+  white-space: nowrap;
 }
 
 /* RECEIPTS */

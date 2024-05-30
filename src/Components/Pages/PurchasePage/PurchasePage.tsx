@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getProducts } from "../../../Services/apiFacade";
+import { getProducts, reduceProductStock } from "../../../Services/apiFacade";
 import { Product } from "../../../Types";
 import { useAuth } from "../../../Security/AuthProvider";
 import "./PurchasePage.css";
@@ -85,15 +85,21 @@ export default function PurchasePage() {
   const renderProduct = (product: Product) => {
     return (
       <div
-        className="grid-item"
+        className={"grid-item" + (product.stock === 0 ? " out-of-stock" : "")}
         key={product.id}
-        onClick={() => addToReceipt(product)}
+        onClick={() => {
+          product.stock > 0 && addToReceipt(product);
+        }}
       >
+        {product.stock === 0 && (
+          <div className="out-of-stock-label">Out of Stock</div>
+        )}
         <img src={product.image} alt={product.name} />
         <div className="product-name">{product.name}</div>
         <div className="product-price">
           {product.price.toString().replace(".", ",")}.- kr./stk
         </div>
+        <div className="product-stock">Stock: {product.stock}</div>
       </div>
     );
   };
@@ -128,7 +134,22 @@ export default function PurchasePage() {
         )} DKK. Press "OK" if the customer has paid. Cancel to abort.`
     );
     if (isConfirmed) {
-      setReceipt([]);
+      // Send the receipt to the backend
+      console.log(receipt);
+      try {
+        receipt.forEach(async (product) => {
+          await reduceProductStock(product.id, product.quantity);
+          //Update product list
+          getProducts()
+            .then((data) => {
+              setProducts(data);
+            })
+            .catch((err) => console.error(err));
+          setReceipt([]);
+        });
+      } catch (error) {
+        console.error("Error reducing product stock:", error);
+      }
     }
   };
 

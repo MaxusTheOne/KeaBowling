@@ -187,6 +187,31 @@ async function getProducts() {
   }
 }
 
+async function reduceProductStock(productId: number, quantity: number) {
+  try {
+    const token = localStorage.getItem("token");
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    };
+    const options = makeOptions("PUT", null, headers, true);
+    const response = await fetch(
+      `${API_URL}/products/${productId}/reduceStock/${quantity}`,
+      options
+    );
+    if (response.ok) {
+      if (response.headers.get("content-type")?.includes("application/json")) {
+        const data = await response.json();
+        return data;
+      }
+      return null;
+    } else {
+      console.error(`Error with response: ${response.statusText}`);
+    }
+  } catch (error) {
+    console.error(error);
+  }
+
 async function getProductById(id: number) {
     const token = localStorage.getItem("token");
   const headers = {
@@ -298,4 +323,5 @@ export {
   getStaff,
   getAllStaff,
   createSchedule,
+  reduceProductStock,
 };
