@@ -19,6 +19,7 @@ import UsersDetailPage from "./Pages/Users/UsersDetailPage";
 import PurchaseAdminPanel from "./Pages/PurchasePage/PurchaseAdminPanel/PurchaseAdminPanel";
 import PurchaseAdminPanelDetails from "./Pages/PurchasePage/PurchaseAdminPanel/PurchaseAdminPanelDetails";
 import PurchaseAdminPanelAdd from "./Pages/PurchasePage/PurchaseAdminPanel/PurchaseAdminPanelAdd/PurchaseAdminPanelAdd";
+import ScheduleDetailPage from "./Pages/Schedule/ScheduleDetailPage";
 
 const AppRoutes = [
   {
@@ -90,6 +91,14 @@ const AppRoutes = [
     Element: () => (
       <RequireAuth roles={["ADMIN", "STAFF"]}>
         <SchedulePageAdd />
+      </RequireAuth>
+    ),
+  },
+  {
+    path: "/schedule/:id",
+    Element: () => (
+      <RequireAuth roles={["ADMIN", "STAFF"]}>
+        <ScheduleDetailPage />
       </RequireAuth>
     ),
   },

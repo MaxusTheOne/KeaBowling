@@ -101,16 +101,8 @@ export default function UsersDetailPage() {
             {/* Form for a User with input */}
             <form id="user-form-container" className="form-container" onSubmit={handleSubmit}>
                 <h1>User Detail Page</h1>
-                <label className="form-label">ID:</label>
-                <input
-                    className="form-input"
-                    type="text"
-                    name="id"
-                    value={user?.id}
-                    onChange={handleChange}
-                    readOnly
-                    required
-                />
+                <label className="form-label">ID: {user?.id}</label>
+  
                 <label className="form-label">Created:</label>
                 <input
                     className="form-input"

@@ -108,16 +108,8 @@ export default function ReservationsDetailPage() {
       <form onSubmit={handleSubmit()} id="reservation-form-container" className="form-container">
         <h1>Reservation Detail Page</h1>
 
-        <label className="form-label">User ID:</label>
-        <input
-          type="text"
-          name="userId"
-          value={reservation?.userId}
-          onChange={handleChange}
-          readOnly
-          required
-          className="form-input"
-        />
+        <label className="form-label">User ID: {reservation?.userId}</label>
+
 
         <label className="form-label">User Mail:</label>
         <input

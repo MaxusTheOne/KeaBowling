@@ -68,16 +68,8 @@ export default function ProductDetailPage() {
             {/* Form for a Product with input */}
             <form onSubmit={handleSubmit()} id="product-form-container" className="form-container">
                 <h1>Product Detail Page</h1>
-                <label className="form-label">ID:</label>
-                <input
-                    type="text"
-                    name="id"
-                    value={product?.id}
-                    onChange={handleChange}
-                    readOnly
-                    required
-                    className="form-input"
-                />
+                <label className="form-label">ID: {product?.id}</label>
+
 
                 <label className="form-label">Name:</label>
                 <input

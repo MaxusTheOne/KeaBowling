@@ -1,4 +1,4 @@
-import { Equipment, EquipmentDTO, Product, ScheduleDTO } from "../Types";
+import { Equipment, EquipmentDTO, Product, ScheduleDTO, Schedule } from "../Types";
 import { ReservationType } from "../Types";
 import { API_URL } from "../settings";
 import { User, UserToUpdate } from "./authFacade";
@@ -265,6 +265,37 @@ async function createSchedule(schedule: ScheduleDTO) {
   return fetch(API_URL + "/schedule", options).then(handleHttpErrors);
 }
 
+async function getScheduleById(id: number) {
+  const token = localStorage.getItem("token");
+  const headers = {
+    Authorization: `Bearer ${token}`,
+  };
+  const options = makeOptions("GET", null, headers, true);
+  return fetch(API_URL + "/schedule/" + id, options).then(handleHttpErrors);
+}
+
+async function updateSchedule(schedule: Schedule) {
+  console.log("updateSchedule", schedule);
+  const token = localStorage.getItem("token");
+  const headers = {
+    Authorization: `Bearer ${token}`,
+  };
+  const options = makeOptions("PUT", schedule, headers, true);
+  return fetch(API_URL + "/schedule/" + schedule.id, options).then(
+    handleHttpErrors
+  );
+}
+
+async function deleteSchedule(id: number) {
+  const token = localStorage.getItem("token");
+  const headers = {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${token}`,
+  };
+  const options = makeOptions("DELETE", null, headers, true);
+  return fetch(API_URL + "/schedule/" + id, options).then(handleHttpErrors);
+}
+
 async function getStaff() {
   try {
     const response = await fetch(`${API_URL}/users/role/STAFF`);
@@ -321,6 +352,9 @@ export {
   updateProduct,
   deleteProduct,
   getSchedules,
+  getScheduleById,
+  updateSchedule,
+  deleteSchedule,
   getStaff,
   getAllStaff,
   createSchedule,

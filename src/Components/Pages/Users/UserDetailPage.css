@@ -15,7 +15,8 @@
 
 }
 
-#user-form-container label, #equipment-form-container label, #reservation-form-container label,#product-form-container label {
+/* Should have made a class for this, whatev */
+#user-form-container label, #equipment-form-container label, #reservation-form-container label,#product-form-container label, #schedule-form-container label {
     width: 100%;
     margin-left: 40px;
     margin-top: 10px;
