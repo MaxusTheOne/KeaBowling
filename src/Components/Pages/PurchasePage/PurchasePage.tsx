@@ -6,7 +6,11 @@ import "./PurchasePage.css";
 import { useNavigate } from "react-router-dom";
 
 export default function PurchasePage() {
+  const [searchTerm, setSearchTerm] = useState<string>("");
   const [products, setProducts] = useState<Product[]>([]);
+  const filteredProducts = products.filter((product) =>
+    product.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
   const [receipt, setReceipt] = useState<ProductWithQuantity[]>([]);
   const navigate = useNavigate();
   // Define a new type that includes the quantity and total price of a product
@@ -97,9 +101,9 @@ export default function PurchasePage() {
         <img src={product.image} alt={product.name} />
         <div className="product-name">{product.name}</div>
         <div className="product-price">
-          {product.price.toString().replace(".", ",")}.- kr./stk
+          {product.price.toString().replace(".", ",")} kr.
         </div>
-        <div className="product-stock">Stock: {product.stock}</div>
+        <div className="product-stock">Amount in stock: {product.stock}</div>
       </div>
     );
   };
@@ -164,10 +168,17 @@ export default function PurchasePage() {
         </button>
       ) : null}
       <h1>Sell Amenities</h1>
-
+      <input
+        id="search-input"
+        type="text"
+        placeholder="Search"
+        onChange={(event) => setSearchTerm(event.target.value)}
+      />
       <div id="purchase-page-container">
         <div id="item-grid-container">
-          {Array.isArray(products) ? products.map(renderProduct) : null}
+          {Array.isArray(filteredProducts)
+            ? filteredProducts.map(renderProduct)
+            : null}
         </div>
         <div id="receipt-container">
           <div id="receipt-items-container">

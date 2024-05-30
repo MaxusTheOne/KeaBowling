@@ -27,7 +27,6 @@
 }
 
 #item-grid-container::-webkit-scrollbar-thumb {
-  
   background-color: rgb(56, 56, 56);
 }
 
@@ -85,10 +84,18 @@
 }
 
 .product-price {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial;
   font-size: 0.9em;
   font-weight: 300;
   color: white;
+  text-align: center;
+}
+
+.product-stock {
+  font-family: Arial;
+  font-size: 0.9em;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.37);
   text-align: center;
 }
 
@@ -218,7 +225,7 @@
 }
 
 #admin-panel-button {
-  border-radius: 0px; 
+  border-radius: 0px;
   border: 1px solid rgba(0, 255, 255, 0.226);
   padding: 10px;
   color: white;
@@ -236,4 +243,18 @@
   cursor: pointer;
   border: 1px solid rgba(0, 255, 255, 0.507);
   box-shadow: 0px 0px 10px 0px rgba(0, 255, 255, 0.548);
+}
+
+#search-input {
+  position: absolute;
+  top: 50px;
+  right: 38%;
+  width: 20%;
+  height: 30px;
+  background-color: rgb(68, 68, 68);
+  border: none;
+  border-radius: 15px;
+  color: white;
+  padding-left: 15px;
+  font-family: Barlow, sans-serif;
 }
