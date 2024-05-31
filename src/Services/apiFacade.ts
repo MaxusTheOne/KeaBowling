@@ -122,6 +122,14 @@ async function getReservations(): Promise<ReservationType[]> {
   return results;
 }
 
+async function postReservation(reservation: ReservationType) {
+  const token = localStorage.getItem("token");
+  const headers = {
+    Authorization: `Bearer ${token}`,
+  };
+  const options = makeOptions("POST", reservation, headers, true);
+  return fetch(API_URL + "/reservations", options).then(handleHttpErrors);
+}
 async function getReservationById(id: number): Promise<ReservationType> {
   const token = localStorage.getItem("token");
   const headers = {
@@ -347,6 +355,7 @@ export {
   getReservationById,
   updateReservation,
   getReservations,
+  postReservation,
   getEquipment,
   getEquipmentById,
   postEquipment,
