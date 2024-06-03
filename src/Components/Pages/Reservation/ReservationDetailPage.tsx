@@ -103,13 +103,15 @@ export default function ReservationsDetailPage() {
   };
   return (
     <div>
-
       {/* Form for a reservation with input */}
-      <form onSubmit={handleSubmit()} id="reservation-form-container" className="form-container">
+      <form
+        onSubmit={handleSubmit()}
+        id="reservation-form-container"
+        className="form-container"
+      >
         <h1>Reservation Detail Page</h1>
 
         <label className="form-label">User ID: {reservation?.userId}</label>
-
 
         <label className="form-label">User Mail:</label>
         <input
@@ -162,20 +164,20 @@ export default function ReservationsDetailPage() {
           className="form-input"
         />
         <div className="choice-container">
-
-        <label className="form-label">Child Friendly:</label>
-        <input
-          type="checkbox"
-          name="childFriendly"
-          checked={formState?.childFriendly}
-          onChange={handleChange}
-          required
-          className="form-input"
-        />
+          <label className="form-label">Child Friendly:</label>
+          <input
+            type="checkbox"
+            name="childFriendly"
+            checked={formState?.childFriendly}
+            onChange={handleChange}
+            className="form-input"
+          />
         </div>
-    
+
         <div className="choice-container">
-          <button onClick={handleDelete()} className="delete-button">Delete</button>
+          <button onClick={handleDelete()} className="delete-button">
+            Delete
+          </button>
           <button className="save-button">Save</button>
         </div>
       </form>
